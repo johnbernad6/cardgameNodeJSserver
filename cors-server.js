@@ -205,9 +205,8 @@ const data = [
  if (gameroomid) {
     const filteredData = {
       gameroomid: Number(gameroomid),
-      idk : gameRooms[gameroomid] || [],
+      data : gameRooms[gameroomid] || [],
 
-      cards: []
     };
     res.json([filteredData]);
   } else {
