@@ -136,64 +136,6 @@ const data = [
     player3hand: player3,
     player4hand: player4,
 
-  //   cards: [
-  // { "id": 1, "name": "cardDiamonds_A" },
-  // { "id": 2, "name": "cardDiamonds_2" },
-  // { "id": 3, "name": "cardDiamonds_3" },
-  // { "id": 4, "name": "cardDiamonds_4" },
-  // { "id": 5, "name": "cardDiamonds_5" },
-  // { "id": 6, "name": "cardDiamonds_6" },
-  // { "id": 7, "name": "cardDiamonds_7" },
-  // { "id": 8, "name": "cardDiamonds_8" },
-  // { "id": 9, "name": "cardDiamonds_9" },
-  // { "id": 10, "name": "cardDiamonds_10" },
-  // { "id": 11, "name": "cardDiamonds_J" },
-  // { "id": 12, "name": "cardDiamonds_Q" },
-  // { "id": 13, "name": "cardDiamonds_K" },
-
-  // { "id": 14, "name": "cardHearts_A" },
-  // { "id": 15, "name": "cardHearts_2" },
-  // { "id": 16, "name": "cardHearts_3" },
-  // { "id": 17, "name": "cardHearts_4" },
-  // { "id": 18, "name": "cardHearts_5" },
-  // { "id": 19, "name": "cardHearts_6" },
-  // { "id": 20, "name": "cardHearts_7" },
-  // { "id": 21, "name": "cardHearts_8" },
-  // { "id": 22, "name": "cardHearts_9" },
-  // { "id": 23, "name": "cardHearts_10" },
-  // { "id": 24, "name": "cardHearts_J" },
-  // { "id": 25, "name": "cardHearts_Q" },
-  // { "id": 26, "name": "cardHearts_K" },
-
-  // { "id": 27, "name": "cardClubs_A" },
-  // { "id": 28, "name": "cardClubs_2" },
-  // { "id": 29, "name": "cardClubs_3" },
-  // { "id": 30, "name": "cardClubs_4" },
-  // { "id": 31, "name": "cardClubs_5" },
-  // { "id": 32, "name": "cardClubs_6" },
-  // { "id": 33, "name": "cardClubs_7" },
-  // { "id": 34, "name": "cardClubs_8" },
-  // { "id": 35, "name": "cardClubs_9" },
-  // { "id": 36, "name": "cardClubs_10" },
-  // { "id": 37, "name": "cardClubs_J" },
-  // { "id": 38, "name": "cardClubs_Q" },
-  // { "id": 39, "name": "cardClubs_K" },
-
-  // { "id": 40, "name": "cardSpades_A" },
-  // { "id": 41, "name": "cardSpades_2" },
-  // { "id": 42, "name": "cardSpades_3" },
-  // { "id": 43, "name": "cardSpades_4" },
-  // { "id": 44, "name": "cardSpades_5" },
-  // { "id": 45, "name": "cardSpades_6" },
-  // { "id": 46, "name": "cardSpades_7" },
-  // { "id": 47, "name": "cardSpades_8" },
-  // { "id": 48, "name": "cardSpades_9" },
-  // { "id": 49, "name": "cardSpades_10" },
-  // { "id": 50, "name": "cardSpades_J" },
-  // { "id": 51, "name": "cardSpades_Q" },
-  // { "id": 52, "name": "cardSpades_K" }
-
-  //   ],
   },
   
   // ... other player objects ...
@@ -211,12 +153,12 @@ const data = [
   } else {
 
 
-console.log(gameRooms)
-  console.log(roomId)
+// console.log(gameRooms)
+  // console.log(roomId)
 
 
   gameRooms[roomId] = data;
-  roomId += 1; // Increment room id 
+
 
 
   
@@ -224,10 +166,10 @@ console.log(gameRooms)
 
 // Generate and retrieve unique combinations
 
-console.log("Player 1:", player1);
-console.log("Player 2:", player2);
-console.log("Player 3:", player3);
-console.log("Player 4:", player4);
+// console.log("Player 1:", player1);
+// console.log("Player 2:", player2);
+// console.log("Player 3:", player3);
+// console.log("Player 4:", player4);
 
 
 
@@ -235,12 +177,57 @@ console.log("Player 4:", player4);
 
 
   res.json(data);
+  console.log("player1's hand to be deleted",gameRooms[roomId][0].player1hand)
+  delete gameRooms[roomId][0].player1hand;
+
+  roomId += 1; // Increment room id 
+
   console.log("created game room:", roomId);
 
 }
 
 });
 
+app.get('/api/join-room', (req, res) => {
+  const { gameroomid } = req.query;
+  console.log("Reached")
+
+  if (gameroomid && gameRooms[gameroomid]) {
+    res.json(gameRooms[gameroomid]);
+  console.log(gameRooms[gameroomid][0].player2hand)
+
+  if (gameRooms[gameroomid][0].player2hand!== undefined) {
+  delete gameRooms[gameroomid][0].player2hand;
+  }
+  else{
+    if (gameRooms[gameroomid][0].player3hand!== undefined) {
+  delete gameRooms[gameroomid][0].player3hand;
+  }
+  else{
+      if (gameRooms[gameroomid][0].player4hand!== undefined) {
+  delete gameRooms[gameroomid][0].player4hand;
+  }
+  }
+
+  }
+
+
+  } else {
+    res.status(404).json({ error: 'Room not found' });
+  }
+});
+
+
+// app.get('/api/join-room/:gameroomid', (req, res) => {
+//   const gameroomid = parseInt(req.params.gameroomid);
+//   const roomData = gameRooms[gameroomid];
+//   console.log("Reached")
+//   if (roomData) {
+//     res.json(roomData);
+//   } else {
+//     res.status(404).json({ error: 'Room not found' });
+//   }
+// });
 
 app.get('/api/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
