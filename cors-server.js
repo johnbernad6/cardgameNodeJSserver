@@ -77,6 +77,10 @@ const cards = [
 
 ];
 
+const path = require('path'); // Import the path module
+
+app.use(express.static(path.join(__dirname)));
+
 // Update the /api/cards endpoint to accept a query parameter
 app.get('/api/cards', (req, res) => {
 
