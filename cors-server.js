@@ -81,6 +81,20 @@ const path = require('path'); // Import the path module
 
 app.use(express.static(path.join(__dirname)));
 
+app.get('/Support', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Support.html'));
+});
+
+app.get('/Privacypolicy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Privacypolicy.html'));
+});
+
+app.get('/Marketing', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Marketing.html'));
+});
+
+
+
 // Update the /api/cards endpoint to accept a query parameter
 app.get('/api/cards', (req, res) => {
 
