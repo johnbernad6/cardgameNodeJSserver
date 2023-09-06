@@ -93,6 +93,10 @@ app.get('/Marketing', (req, res) => {
   res.sendFile(path.join(__dirname, 'Marketing.html'));
 });
 
+app.get('/CV', (req, res) => {
+  res.sendFile(path.join(__dirname, 'CV.html'));
+});
+
 
 
 // Update the /api/cards endpoint to accept a query parameter
