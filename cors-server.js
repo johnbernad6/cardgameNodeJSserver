@@ -15,7 +15,154 @@ cors_proxy.createServer({
 });
 
 // Sample data for the API
+const { Pool } = require('pg');
+require('dotenv').config();
 
+DATABASE_URL = "postgres://fernsberns:OBEXcKvl7kJ8@ep-crimson-frog-75586577-pooler.us-east-2.aws.neon.tech/neondb";
+
+const pool = new Pool({
+  connectionString: DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
+async function getPostgresVersion() {
+  const client = await pool.connect();
+  try {
+    const res = await client.query('SELECT version()');
+    console.log(res.rows[0]);
+  } finally {
+    client.release();
+  }
+}
+
+async function listTables() {
+  const client = await pool.connect();
+  try {
+    // Query to fetch all table names in the current database
+    const queryResult = await client.query(
+      "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"
+    );
+
+    // Extract the table names from the query result
+    const tableNames = queryResult.rows.map((row) => row.table_name);
+
+    // Print the list of table names
+    console.log('List of Tables:');
+    tableNames.forEach((tableName) => {
+      console.log(tableName);
+    });
+  } finally {
+    client.release();
+  }
+}
+
+
+async function addShoppingItem(name, quantity) {
+  const client = await pool.connect();
+  try {
+    // Query to insert a new shopping item into the "grocerylist" table
+    const query = 'INSERT INTO grocerylist (name, quantity) VALUES ($1, $2) RETURNING *;';
+    const values = [name, quantity];
+
+    // Execute the query and get the inserted item
+    const queryResult = await client.query(query, values);
+
+    // Extract the newly added item from the query result
+    const newItem = queryResult.rows[0];
+
+    // Print or return the newly added item
+    console.log('Newly Added Item:', newItem);
+    return newItem;
+  } finally {
+    client.release();
+  }
+}
+
+
+async function getAllGroceryListItems() {
+  const client = await pool.connect();
+  try {
+    // Query to fetch all rows from the "grocerylist" table
+    const queryResult = await client.query('SELECT * FROM grocerylist;');
+
+    // Extract the rows from the query result
+    const groceryListItems = queryResult.rows;
+
+    // Print or process the retrieved rows as needed
+    console.log('All Grocery List Items:');
+    groceryListItems.forEach((item) => {
+      console.log(item);
+    });
+
+    // Return the retrieved rows if you need to use them elsewhere in your code
+    return groceryListItems;
+  } finally {
+    client.release();
+  }
+}
+
+async function editShoppingItem(id, name, quantity) {
+  const client = await pool.connect();
+  try {
+    // Query to update an existing shopping item in the "grocerylist" table
+    const query = 'UPDATE grocerylist SET name = $1, quantity = $2 WHERE id = $3 RETURNING *;';
+    const values = [name, quantity, id];
+
+    // Execute the query and get the updated item
+    const queryResult = await client.query(query, values);
+
+    // Extract the updated item from the query result
+    const updatedItem = queryResult.rows[0];
+
+    // Print or return the updated item
+    console.log('Updated Item:', updatedItem);
+    return updatedItem;
+  } finally {
+    client.release();
+  }
+}
+
+async function removeShoppingItem(id) {
+  const client = await pool.connect();
+  try {
+    // Query to delete a shopping item from the "grocerylist" table by its ID
+    const query = 'DELETE FROM grocerylist WHERE id = $1 RETURNING *;';
+    const values = [id];
+
+    // Execute the query and get the deleted item
+    const queryResult = await client.query(query, values);
+
+    // Extract the deleted item from the query result
+    const deletedItem = queryResult.rows[0];
+
+    // Print or return the deleted item
+    console.log('Deleted Item:', deletedItem);
+    return deletedItem;
+  } finally {
+    client.release();
+  }
+}
+
+addShoppingItem('Milk', 2)
+  .then(() => {
+    console.log('Item added successfully.');
+    // You can perform additional actions here after adding the item.
+getAllGroceryListItems().catch((error) => console.error('Error:', error));
+  
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+
+
+// listTables().catch((error) => console.error('Error:', error));
+
+
+
+getPostgresVersion();
 
 const cards = [
 
@@ -80,6 +227,10 @@ const cards = [
 const path = require('path'); // Import the path module
 
 app.use(express.static(path.join(__dirname)));
+
+app.get('/App', (req, res) => {
+  res.sendFile(path.join(__dirname, 'App.js'));
+});
 
 app.get('/Support', (req, res) => {
   res.sendFile(path.join(__dirname, 'Support.html'));
