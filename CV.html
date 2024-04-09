@@ -7,134 +7,103 @@
         body {
             font-family: "Times New Roman", Times, serif;
             font-size: 14px;
-            margin: 0 ;
+            margin: 0;
             padding: 0;
-            display: flex;
         }
 
-        .sidebar {
+        .navbar {
+/* Adjust spacing 
             background-color: white;
             color: black;
-            width: 200px;
-            transition: all 0.1s;
-            overflow-x: hidden;
-
-        }
-        .fixedsidebar{
-            position: fixed;
-            box-shadow: 2px 2px 50px 1px lightgray;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            z-index: 1000;
+*/
         }
 
-        .sidebar-content {
-            padding-left: 20px;
-            padding-top: 20px;
-
-            padding-bottom: 1000px;
-        }
-
-        .maincontent {
-            flex: 1;
-/*             padding-top: 50px;
-            padding-left: 300px;
-            padding-bottom: 1000px; */
-            transition: all 0.1s;
-            overflow-x: hidden;
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: relative;
         }
 
         .menu-btn {
-            background-color: black;
-            text-align: right;
             font-size: 30px;
             cursor: pointer;
-            color: white;
-            padding: 10px;
-/*            position: fixed;*/
-            top: 10px;
-            left: 10px;
-            z-index: 1;
         }
 
-        .collapsed {
-            width: 50px; /* Adjust the width as needed */
-
-        }
-        .maincontentcollapsed {
-            padding-left: 100px; /* Adjust the width as needed */
-        }
-        .sidebarcontentcollapsed {
-            visibility: hidden; /* Adjust the width as needed */
-        }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar a {
-            color: black;
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
             text-decoration: none;
+            color: black;
         }
 
-        .sidebar a:hover {
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, top 0.3s ease-in-out;
+        }
+
+        .navbar.expanded .menu-links {
+            opacity: 1;
+            visibility: visible;
+            top: calc(100% + 10px); /* Adjust spacing */
+        }
+
+        .menu-links a {
+		padding: 1%;
+            text-decoration: none;
+            color: black;
+            margin: 5px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .menu-links a:hover {
             text-decoration: underline;
         }
 
-        .section {
-            margin-bottom: 20px;
-        }
-
-        .section h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .section h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-
-        .section ul {
-            list-style-type: disc;
-            margin-left: 20px;
+        .maincontent {
+            margin-top: 80px; /* Adjust according to the navbar height */
+            text-align: center;
         }
     </style>
     <title>John Bernad - Resume</title>
 </head>
 <body>
-    <span class="fixedsidebar">
-    <div class="menu-btn" onclick="toggleSidebar()"> &#9776;</div>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-content" id="sidebar-content">
-            <h1>John Bernad</h1>
-            <p>Chicago, IL</p>
-<section class="section" id="contactme">
-    <p><a style="color: black;" href="tel:+17073423998">+17073423998</a></p>
-    <p><a style="color: black;" href="mailto:johnbernad6@gmail.com">johnbernad6@gmail.com</a></p>
-    <p><a style="color: black;" href="https://www.linkedin.com/in/johnbernad/">linkedin.com/johnbernad/</a></p>
-    <p><a style="color: black;" href="https://github.com/johnbernad6">github.com/johnbernad6</a></p>
-</section>
+    <div class="navbar collapsed" id="navbar">
+        <div class="navbar-content">
+            <div class="menu-btn" onclick="toggleNavbar()"> &#9776;</div>
+            <a href="#" class="logo"></a>
+            <div class="menu-links">
+                <a href="tel:+17073423998">+17073423998</a>
+                <a href="mailto:johnbernad6@gmail.com">johnbernad6@gmail.com</a>
+                <a href="https://www.linkedin.com/in/johnbernad/">linkedin.com/johnbernad/</a>
+                <a href="https://github.com/johnbernad6">github.com/johnbernad6</a>
+            </div>
         </div>
     </div>
-    </span>
 
-
-<div class="maincontent" id="maincontent" style="width: 100%; text-align: center;">
-    <img src="https://raw.githubusercontent.com/johnbernad6/cardgameNodeJSserver/main/JohnBernad.png" width="50%" style="margin: 0 auto;box-shadow: 0px 1px 50px 1px lightgray;
-">
-</div>
-
+    <div class="maincontent">
+        <img src="https://raw.githubusercontent.com/johnbernad6/cardgameNodeJSserver/main/JohnBernad.png" width="50%" style="margin: 0 auto;box-shadow: 0px 1px 50px 1px lightgray;">
+    </div>
 
     <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById("sidebar");
-            sidebar.classList.toggle("collapsed");
-            var sidebarcontent = document.getElementById("sidebar-content");
-            sidebarcontent.classList.toggle("sidebarcontentcollapsed");
-            var maincontent = document.getElementById("maincontent");
-            maincontent.classList.toggle("maincontentcollapsed");
+        function toggleNavbar() {
+            var navbar = document.getElementById("navbar");
+            navbar.classList.toggle("expanded");
         }
     </script>
 </body>
