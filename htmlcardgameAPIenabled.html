@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card Game</title>
+<style>
+    .player {
+        display: flex;
+    }
+    .card img {
+        width: 80%; /* Adjusted size to be 80% smaller */
+        height: auto; /* Automatically adjust height to maintain aspect ratio */
+        max-width: 100px; /* Set a maximum width to prevent excessive shrinking */    
+        border: solid 2px black;
+        border-radius:10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="player" id="player1"></div>
+<div class="player" id="player2"></div>
+<div class="player" id="player3"></div>
+<div class="player" id="player4"></div>
+
+<script>
+    const cards = [
+       { "id": 1, "name": "cardDiamonds_A" },
+    { "id": 2, "name": "cardDiamonds_2" },
+    { "id": 3, "name": "cardDiamonds_3" },
+    { "id": 4, "name": "cardDiamonds_4" },
+    { "id": 5, "name": "cardDiamonds_5" },
+    { "id": 6, "name": "cardDiamonds_6" },
+    { "id": 7, "name": "cardDiamonds_7" },
+    { "id": 8, "name": "cardDiamonds_8" },
+    { "id": 9, "name": "cardDiamonds_9" },
+    { "id": 10, "name": "cardDiamonds_10" },
+    { "id": 11, "name": "cardDiamonds_J" },
+    { "id": 12, "name": "cardDiamonds_Q" },
+    { "id": 13, "name": "cardDiamonds_K" },
+            
+    { "id": 14, "name": "cardHearts_A" },
+    { "id": 15, "name": "cardHearts_2" },
+    { "id": 16, "name": "cardHearts_3" },
+    { "id": 17, "name": "cardHearts_4" },
+    { "id": 18, "name": "cardHearts_5" },
+    { "id": 19, "name": "cardHearts_6" },
+    { "id": 20, "name": "cardHearts_7" },
+    { "id": 21, "name": "cardHearts_8" },
+    { "id": 22, "name": "cardHearts_9" },
+    { "id": 23, "name": "cardHearts_10" },
+    { "id": 24, "name": "cardHearts_J" },
+    { "id": 25, "name": "cardHearts_Q" },
+    { "id": 26, "name": "cardHearts_K" },
+            
+    { "id": 27, "name": "cardClubs_A" },
+    { "id": 28, "name": "cardClubs_2" },
+    { "id": 29, "name": "cardClubs_3" },
+    { "id": 30, "name": "cardClubs_4" },
+    { "id": 31, "name": "cardClubs_5" },
+    { "id": 32, "name": "cardClubs_6" },
+    { "id": 33, "name": "cardClubs_7" },
+    { "id": 34, "name": "cardClubs_8" },
+    { "id": 35, "name": "cardClubs_9" },
+    { "id": 36, "name": "cardClubs_10" },
+    { "id": 37, "name": "cardClubs_J" },
+    { "id": 38, "name": "cardClubs_Q" },
+    { "id": 39, "name": "cardClubs_K" },
+            
+    { "id": 40, "name": "cardSpades_A" },
+    { "id": 41, "name": "cardSpades_2" },
+    { "id": 42, "name": "cardSpades_3" },
+    { "id": 43, "name": "cardSpades_4" },
+    { "id": 44, "name": "cardSpades_5" },
+    { "id": 45, "name": "cardSpades_6" },
+    { "id": 46, "name": "cardSpades_7" },
+    { "id": 47, "name": "cardSpades_8" },
+    { "id": 48, "name": "cardSpades_9" },
+    { "id": 49, "name": "cardSpades_10" },
+    { "id": 50, "name": "cardSpades_J" },
+    { "id": 51, "name": "cardSpades_Q" },
+    { "id": 52, "name": "cardSpades_K" }
+    ];
+
+    async function fetchData(url) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('There was a problem fetching data:', error);
+        }
+    }
+
+    function populatePlayerHands(roomData) {
+        if (!roomData || roomData.length === 0) return;
+
+        const playersData = roomData[0];
+        const playerIds = ['player1', 'player2', 'player3', 'player4'];
+
+        playerIds.forEach((playerId, index) => {
+            const playerData = playersData[`player${index + 1}hand`];
+            const playerDiv = document.getElementById(playerId);
+            if (!playerDiv) return;
+
+            playerData.forEach(cardId => {
+                const imageUrl = getCardImageUrl(cardId);
+                if (imageUrl) {
+                    const cardElement = createCardElement(imageUrl);
+                    playerDiv.appendChild(cardElement);
+                }
+            });
+        });
+    }
+
+    function getCardImageUrl(cardId) {
+        const card = cards.find(c => c.id === cardId);
+        if (card) {
+            return `https://raw.githubusercontent.com/johnbernad6/swift-card-game/main/PinoyPoker/Assets.xcassets/${card.name}.imageset/${card.name}.png`;
+        }
+        return "";
+    }
+
+    function createCardElement(imageUrl) {
+        const cardDiv = document.createElement("div");
+        cardDiv.className = "card";
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = "Card";
+        cardDiv.appendChild(img);
+        return cardDiv;
+    }
+
+    async function init() {
+        const roomData = await fetchData('http://localhost:3000/api/create-room');
+        populatePlayerHands(roomData);
+    }
+
+    init();
+</script>
+
+</body>
+</html>
+
