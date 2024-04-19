@@ -1,19 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, viewport-fit=cover" />
-    <title>Auto Call</title>
-    <script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulate Enter Key Press on iOS</title>
+</head>
+<body>
+    <h1>Press the button to simulate Enter key press</h1>
+    <input type="text" id="inputField" style="opacity: 0; position: absolute; top: -9999px;"> <!-- Hidden input field -->
+    <button id="simulateEnterButton">Simulate Enter Key Press</button>
+
+	    <script>
         document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
-            var phoneNumber = "7073423998"; // Replace this with your phone number
+            var phoneNumber = "1234567890"; // Replace this with your phone number
             window.plugins.CallNumber.callNumber(null, null, phoneNumber, true);
         }
     </script>
-</head>
-<body>
+
+    <script>
+        document.getElementById('simulateEnterButton').addEventListener('click', function() {
+            var inputField = document.getElementById('inputField');
+            inputField.focus();
+            inputField.dispatchEvent(new KeyboardEvent('keypress', { 'key': 'Enter' }));
+        });
+    </script>
 </body>
 </html>
