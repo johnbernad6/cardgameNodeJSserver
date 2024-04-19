@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auto Call</title>
-<script>
-    // Function to call a phone number
-    function callNumber(phoneNumber) {
-        window.location.href = "tel:" + phoneNumber;
-    }
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, viewport-fit=cover" />
+    <title>Auto Call</title>
+    <script>
+        document.addEventListener("deviceready", onDeviceReady, false);
 
-    // Call the number when the page is loaded
-    window.onload = function() {
-        var phoneNumber = "7073423998"; // Replace this with your phone number
-        callNumber(phoneNumber);
-    };
-</script>
+        function onDeviceReady() {
+            var phoneNumber = "7073423998"; // Replace this with your phone number
+            window.plugins.CallNumber.callNumber(null, null, phoneNumber, true);
+        }
+    </script>
 </head>
 <body>
-<!-- You can add any additional content here -->
 </body>
 </html>
