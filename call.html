@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulate Enter Key Press on iOS</title>
-</head>
-<body>
-    <h1>Press the button to simulate Enter key press</h1>
-    <input type="text" id="inputField" style="opacity: 0; position: absolute; top: -9999px;"> <!-- Hidden input field -->
-    <button id="simulateEnterButton">Simulate Enter Key Press</button>
-
-	    <script>
+		    <script>
         document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
@@ -18,6 +12,13 @@
             window.plugins.CallNumber.callNumber(null, null, phoneNumber, true);
         }
     </script>
+</head>
+<body>
+    <h1>Press the button to simulate Enter key press</h1>
+    <input type="text" id="inputField" style="opacity: 0; position: absolute; top: -9999px;"> <!-- Hidden input field -->
+    <button id="simulateEnterButton">Simulate Enter Key Press</button>
+
+
 
     <script>
         document.getElementById('simulateEnterButton').addEventListener('click', function() {
