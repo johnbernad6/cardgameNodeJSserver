@@ -24,10 +24,6 @@
 <div class="player" id="player3"></div>
 <div class="player" id="player4"></div>
 
-<button id="createGameBtn">Create Game</button>
-<input type="text" id="joinGameInput" placeholder="Enter 4-digit code">
-<button id="joinGameBtn">Join Game</button>
-
 <script>
     const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
@@ -128,4 +124,23 @@
         return "";
     }
 
-    function createCard
+    function createCardElement(imageUrl) {
+        const cardDiv = document.createElement("div");
+        cardDiv.className = "card";
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = "Card";
+        cardDiv.appendChild(img);
+        return cardDiv;
+    }
+
+    async function init() {
+        const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/create-room');
+        populatePlayerHands(roomData);
+    }
+
+    init();
+</script>
+
+</body>
+</html>
