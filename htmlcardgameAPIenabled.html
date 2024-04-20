@@ -135,7 +135,7 @@
     }
 
     async function init() {
-        const roomData = await fetchData('http://localhost:8081/api/create-room');
+        const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/create-room');
         populatePlayerHands(roomData);
     }
 
