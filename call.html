@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, viewport-fit=cover" />
-    <title>Auto Call</title>
-    <script>
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        function onDeviceReady() {
-            var phoneNumber = "7073423998"; // Replace this with your phone number
-            window.plugins.CallNumber.callNumber(null, null, phoneNumber, true);
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trigger</title>
 </head>
 <body>
+
+<!-- Add a hidden link to trigger the phone call -->
+<a id="phoneLink" href="tel:7073423998"></a>
+
+<script>
+window.onload = function() {
+  // Trigger the click event on the hidden link to initiate the phone call
+  document.getElementById('phoneLink').click();
+};
+</script>
+
 </body>
 </html>
