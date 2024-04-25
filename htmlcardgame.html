@@ -99,10 +99,10 @@
 
         const playersData = roomData[0];
         const playerIds = ['player1', 'player2', 'player3', 'player4'];
-        console.log(playersData)
+        console.log(playersData[0])
 
-        playerIds.forEach((playerId, index) => {
-            const playerData = playersData[`player${index + 1}hand`];
+     
+            const playerData = playersData[0];
             const playerDiv = document.getElementById(playerId);
             if (!playerDiv) return;
 
@@ -113,7 +113,7 @@
                     playerDiv.appendChild(cardElement);
                 }
             });
-        });
+
     }
 
     function getCardImageUrl(cardId) {
