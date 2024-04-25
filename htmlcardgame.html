@@ -22,9 +22,7 @@
 
 <h1 id="roomID"></h1>
 <div class="player" id="player1"></div>
-<div class="player" id="player2"></div>
-	<div class="player" id="player3"></div>
-	<div class="player" id="player4"></div>
+
 <script>
  const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
@@ -83,6 +81,7 @@
     { "id": 51, "name": "cardSpades_Q" },
     { "id": 52, "name": "cardSpades_K" }
     ];
+
     async function fetchData(url) {
         try {
             const response = await fetch(url);
@@ -99,7 +98,7 @@
         if (!roomData || roomData.length === 0) return;
 
         const playersData = roomData[0];
-        const playerIds = ['player2', 'player3', 'player4'];
+        const playerIds = ['player1', 'player2', 'player3', 'player4'];
 
         playerIds.forEach((playerId, index) => {
             const playerData = playersData[`player${index + 1}hand`];
@@ -135,9 +134,9 @@
     }
 
     async function init() {
-        const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=1112');
+        const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=1114');
         populatePlayerHands(roomData);
-        displayRoomID(roomData)
+        displayRoomID(roomData);
     }
 
     function displayRoomID(roomData) {
