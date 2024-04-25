@@ -4,29 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Card Game</title>
+    
 <style>
     .player {
         display: flex;
-	
     }
     .card img {
         width: 80%; /* Adjusted size to be 80% smaller */
         height: auto; /* Automatically adjust height to maintain aspect ratio */
-        max-width: 100px; /* Set a maximum width to prevent excessive shrinking */	
-	border: solid 2px black;
-	border-radius:10px;
+        max-width: 100px; /* Set a maximum width to prevent excessive shrinking */    
+        border: solid 2px black;
+        border-radius:10px;
     }
 </style>
 </head>
 <body>
 
+<h1 id="roomID"></h1>
 <div class="player" id="player1"></div>
 <div class="player" id="player2"></div>
-<div class="player" id="player3"></div>
-<div class="player" id="player4"></div>
-
+	<div class="player" id="player3"></div>
+	<div class="player" id="player4"></div>
 <script>
-    const cards = [
+ const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
     { "id": 2, "name": "cardDiamonds_2" },
     { "id": 3, "name": "cardDiamonds_3" },
@@ -83,29 +83,38 @@
     { "id": 51, "name": "cardSpades_Q" },
     { "id": 52, "name": "cardSpades_K" }
     ];
-
-    const players = [
-        {
-            id: 1,
-            hand: [14, 51, 48, 32, 6, 11, 1, 23, 33, 50, 16, 36, 39],
-            elementId: "player1"
-        },
-        {
-            id: 2,
-            hand: [40, 38, 27, 2, 7, 37, 41, 22, 5, 43, 35, 28, 45],
-            elementId: "player2"
-        },
-        {
-            id: 3,
-            hand: [49, 46, 18, 26, 42, 52, 13, 17, 30, 3, 19, 25, 12],
-            elementId: "player3"
-        },
-        {
-            id: 4,
-            hand: [31, 8, 4, 15, 29, 9, 44, 34, 21, 47, 20, 10, 24],
-            elementId: "player4"
+    async function fetchData(url) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('There was a problem fetching data:', error);
         }
-    ];
+    }
+
+    function populatePlayerHands(roomData) {
+        if (!roomData || roomData.length === 0) return;
+
+        const playersData = roomData[0];
+        const playerIds = ['player1', 'player2', 'player3', 'player4'];
+
+        playerIds.forEach((playerId, index) => {
+            const playerData = playersData[`player${index + 1}hand`];
+            const playerDiv = document.getElementById(playerId);
+            if (!playerDiv) return;
+
+            playerData.forEach(cardId => {
+                const imageUrl = getCardImageUrl(cardId);
+                if (imageUrl) {
+                    const cardElement = createCardElement(imageUrl);
+                    playerDiv.appendChild(cardElement);
+                }
+            });
+        });
+    }
 
     function getCardImageUrl(cardId) {
         const card = cards.find(c => c.id === cardId);
@@ -125,16 +134,23 @@
         return cardDiv;
     }
 
-    players.forEach(player => {
-        const playerDiv = document.getElementById(player.elementId);
-        player.hand.forEach(cardId => {
-            const imageUrl = getCardImageUrl(cardId);
-            if (imageUrl) {
-                const cardElement = createCardElement(imageUrl);
-                playerDiv.appendChild(cardElement);
-            }
-        });
-    });
+    async function init() {
+        const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=1112');
+        populatePlayerHands(roomData);
+        displayRoomID(roomData)
+    }
+
+    function displayRoomID(roomData) {
+        if (!roomData || roomData.length === 0) return;
+
+        const roomID = roomData[0].gameroomid;
+        const roomIDElement = document.getElementById('roomID');
+        if (roomIDElement) {
+            roomIDElement.textContent = `ROOM ID: ${roomID}`;
+        }
+    }
+
+    init();
 </script>
 
 </body>
