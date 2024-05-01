@@ -195,8 +195,12 @@
     }
 
     async function init() {
+	        var inputElement = document.getElementById("gameID");
+    
+    // Get the value from the input field and convert it to a string
+    var gameID = String(inputElement.value);
 	    console.log(gameID)
-	    console.log(gameID[0])
+
 	    
         const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=' + gameID);
         populatePlayerHands(roomData);
