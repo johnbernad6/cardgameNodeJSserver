@@ -61,7 +61,7 @@
 
 
 <h1 id="roomID"></h1>
-<div class="player" id="player2"></div>
+<div class="player" id="player1"></div>
 
 <div class="container">
 
@@ -160,7 +160,7 @@
 
         const playersData = roomData[0];
         const playerIds = ['player2', 'player3', 'player4'];
-
+	index = 1;
         playerIds.forEach((playerId, index) => {
             const playerData = playersData[`player${index + 1}hand`];
             const playerDiv = document.getElementById(playerId);
