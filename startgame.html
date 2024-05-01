@@ -204,6 +204,9 @@ init();
     }
 
     async function init() {
+	    console.log(gameID)
+	    console.log(gameID[0])
+	    
         const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=' + gameID);
         populatePlayerHands(roomData);
         displayRoomID(roomData);
