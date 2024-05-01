@@ -90,17 +90,8 @@
     
     // Log the value to verify
     console.log("Game ID:", gameID);
+
 	    
-        if (gameID.length !== 4 || isNaN(gameID)) {
-            alert("Please enter a valid 4-digit game ID.");
-            return;
-        }
-	//console.log(gameID)
-        //alert("Join Game button clicked with game ID: " + gameID);
- // window.location.href = 'https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=' + gameID;
-        // Implement join game functionality here
-init();
-    }
  const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
     { "id": 2, "name": "cardDiamonds_2" },
@@ -226,6 +217,17 @@ init();
         if (roomIDElement) {
             roomIDElement.textContent = `ROOM ID: ${roomID}`;
         }
+    }
+	    
+        if (gameID.length !== 4 || isNaN(gameID)) {
+            alert("Please enter a valid 4-digit game ID.");
+            return;
+        }
+	//console.log(gameID)
+        //alert("Join Game button clicked with game ID: " + gameID);
+ // window.location.href = 'https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=' + gameID;
+        // Implement join game functionality here
+init();
     }
 
     
