@@ -156,6 +156,7 @@
     }
 
     function populatePlayerHands(roomData) {
+	    console.log(roomData);
         if (!roomData || roomData.length === 0) return;
 
         const playersData = roomData[0];
@@ -204,6 +205,7 @@
 	    
         const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=' + gameID);
         populatePlayerHands(roomData);
+	     console.log(roomData);
         // displayRoomID(roomData);
     }
 
