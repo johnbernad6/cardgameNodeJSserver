@@ -83,18 +83,8 @@
     }
 
     function joinGame() {
-    var inputElement = document.getElementById("gameID");
-    
-    // Get the value from the input field and convert it to a string
-    var gameID = String(inputElement.value);
-    
-    // Log the value to verify
-    console.log("Game ID:", gameID);
 
-	    	    
-        const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=' + gameID);
-        populatePlayerHands(roomData);
-        displayRoomID(roomData);
+
 	    
  const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
@@ -205,12 +195,12 @@
     }
 
     async function init() {
-	    // console.log(gameID)
-	    // console.log(gameID[0])
+	    console.log(gameID)
+	    console.log(gameID[0])
 	    
-        // const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=' + gameID);
-        // populatePlayerHands(roomData);
-        // displayRoomID(roomData);
+        const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=' + gameID);
+        populatePlayerHands(roomData);
+        displayRoomID(roomData);
     }
 
     function displayRoomID(roomData) {
