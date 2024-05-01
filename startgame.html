@@ -83,7 +83,11 @@
     }
 
     function joinGame() {
-       var gameID = document.getElementById("gameID").value;
+           var inputElement = document.getElementById("gameID");
+    
+    // Get the value from the input field
+    var gameID = inputElement.value;
+	    
         if (gameID.length !== 4 || isNaN(gameID)) {
             alert("Please enter a valid 4-digit game ID.");
             return;
