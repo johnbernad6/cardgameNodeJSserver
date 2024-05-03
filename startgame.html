@@ -160,7 +160,9 @@
 
     function populatePlayerHands(roomData) {
 	    console.log(roomData);
-	    console.log(roomData[0].length);
+	    
+	    const playerHandCount = Object.keys(roomData[0]).filter(key => key.startsWith('player')).length;
+		console.log(playerHandCount);
         if (!roomData || roomData.length === 0) return;
 
         const playersData = roomData[0];
