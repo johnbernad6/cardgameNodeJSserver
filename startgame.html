@@ -166,7 +166,7 @@
         const playerIds = ['player2', 'player3', 'player4'];
 	index = 1;
         playerIds.forEach((playerId, index) => {
-            const playerData = playersData[`player${index + 1}hand`];
+            const playerData = playersData[`${playerId}hand`];
             const playerDiv = document.getElementById(playerId);
             if (!playerDiv) return;
 
