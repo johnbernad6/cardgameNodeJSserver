@@ -166,12 +166,17 @@
         if (!roomData || roomData.length === 0) return;
 
         const playersData = roomData[0];
+	    
+	let playerIds;
+	
+	if (playerHandCount === 3) {
+	    playerIds = ['player2', 'player3', 'player4'];
+	} else if (playerHandCount === 2) {
+	    playerIds = ['player3', 'player4'];
+	} else if (playerHandCount === 1) {
+	    playerIds = ['player4'];
+	}
 
-	if(playerHandCount == 3){const playerIds = ['player2', 'player3', 'player4'];}
-
-	if(playerHandCount == 2){const playerIds = ['player3', 'player4'];}
-
-	if(playerHandCount == 1){const playerIds = ['player4'];}
 
 	    
 
