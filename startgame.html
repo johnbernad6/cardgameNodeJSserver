@@ -92,6 +92,7 @@
         
         // Set its display property to "none"
         container.style.display = 'none';
+
 	    
  const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
@@ -172,9 +173,18 @@
         const playersData = roomData[0];
 	    
 	let playerIds;
+	let p2;
+	let p3;
+	let p4;
+
 	
 	if (playerHandCount === 3) {
 	    playerIds = ['player2', 'player3', 'player4'];
+
+        p3 = document.getElementById('player3');
+        player3.style.display = 'none';
+	p4 = document.getElementById('player4');
+        player4.style.display = 'none';
 	} else if (playerHandCount === 2) {
 	    playerIds = ['player3', 'player4'];
 	} else if (playerHandCount === 1) {
