@@ -9,9 +9,12 @@
     .player {
         display: flex;
     }
-    .card {
-        position: absolute;
-        cursor: grab;
+    .card img {
+        width: 80%; /* Adjusted size to be 80% smaller */
+        height: auto; /* Automatically adjust height to maintain aspect ratio */
+        max-width: 100px; /* Set a maximum width to prevent excessive shrinking */    
+        border: solid 2px black;
+        border-radius:10px;
     }
 </style>
 </head>
@@ -126,13 +129,6 @@
         img.src = imageUrl;
         img.alt = "Card";
         cardDiv.appendChild(img);
-
-        // Make card draggable
-        cardDiv.draggable = true;
-        cardDiv.addEventListener("dragstart", (event) => {
-            event.dataTransfer.setData("text/plain", imageUrl);
-        });
-
         return cardDiv;
     }
 
