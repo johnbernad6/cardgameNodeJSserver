@@ -24,6 +24,25 @@
 <div class="player" id="player1"></div>
 
 <script>
+
+    var draggableElement = document.getElementById('draggable');
+  var offsetX, offsetY;
+
+  draggableElement.addEventListener('dragstart', function(e) {
+    offsetX = e.clientX - draggableElement.getBoundingClientRect().left;
+    offsetY = e.clientY - draggableElement.getBoundingClientRect().top;
+  });
+
+  document.addEventListener('dragover', function(e) {
+    e.preventDefault();
+  });
+
+  document.addEventListener('drop', function(e) {
+    e.preventDefault();
+    draggableElement.style.left = (e.clientX - offsetX) + 'px';
+    draggableElement.style.top = (e.clientY - offsetY) + 'px';
+  });
+    
  const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
     { "id": 2, "name": "cardDiamonds_2" },
