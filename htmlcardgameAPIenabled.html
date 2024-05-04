@@ -125,6 +125,7 @@
     function createCardElement(imageUrl) {
         const cardDiv = document.createElement("div");
         cardDiv.className = "card";
+         cardDiv.setAttribute("id", "draggable");
         const img = document.createElement("img");
         img.src = imageUrl;
         img.alt = "Card";
