@@ -59,6 +59,13 @@
 </head>
 <body>
 
+<div class="card" id="card1" draggable="true"></div>
+<div class="card" id="card2" draggable="true"></div>
+
+<div class="player" id="player1" ondragover="event.preventDefault()" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+    Drop cards here
+</div>
+
 
 <h1 id="roomID"></h1>
 <div class="player" id="player1"></div>
