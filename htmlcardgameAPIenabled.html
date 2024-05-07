@@ -29,7 +29,7 @@
 <script>
 
   function startDrag(e) {
-    var draggableDiv = document.getElementsByClassName('card');
+    var draggableDiv = document.getElementsByClassName('draggable');
     var offsetX = e.clientX - draggableDiv.getBoundingClientRect().left;
     var offsetY = e.clientY - draggableDiv.getBoundingClientRect().top;
     
@@ -149,6 +149,7 @@
 function createCardElement(imageUrl) {
     const cardDiv = document.createElement("div");
     cardDiv.className = "draggable";
+    cardDiv.setAttribute("onmousedown", "startDrag(event)");
     // cardDiv.setAttribute("id", "draggable"); // Adding id attribute
 
     // cardDiv.style.cursor = "grab"; // Adding cursor style
