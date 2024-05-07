@@ -9,22 +9,24 @@
     .player {
         display: flex;
     }
-    .card img {
+    .card {
+        cursor: grab;
         width: 80%; /* Adjusted size to be 80% smaller */
         height: auto; /* Automatically adjust height to maintain aspect ratio */
         max-width: 100px; /* Set a maximum width to prevent excessive shrinking */    
         border: solid 2px black;
         border-radius:10px;
+        margin-right: 10px; /* Add some margin between cards */
     }
 </style>
 </head>
 <body>
 
 <h1 id="roomID"></h1>
-<div class="player" id="playerId"></div>
+<div class="player" id="player1"></div>
 
 <script>
- const cards = [
+const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
     { "id": 2, "name": "cardDiamonds_2" },
     { "id": 3, "name": "cardDiamonds_3" },
@@ -82,75 +84,97 @@
     { "id": 52, "name": "cardSpades_K" }
     ];
 
-    async function fetchData(url) {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+// Function to create a card element
+function createCardElement(imageUrl) {
+    const cardDiv = document.createElement("div");
+    cardDiv.className = "card";
+    cardDiv.draggable = true; // Make the card draggable
+
+    const img = document.createElement("img");
+    img.src = imageUrl;
+    img.alt = "Card";
+    cardDiv.appendChild(img);
+    return cardDiv;
+}
+
+// Function to get the card image URL
+function getCardImageUrl(cardId) {
+    const card = cards.find(c => c.id === cardId);
+    if (card) {
+        return `https://raw.githubusercontent.com/johnbernad6/swift-card-game/main/PinoyPoker/Assets.xcassets/${card.name}.imageset/${card.name}.png`;
+    }
+    return "";
+}
+
+// Function to populate player hands
+function populatePlayerHands(roomData) {
+    if (!roomData || roomData.length === 0) return;
+
+    const playersData = roomData[0];
+    const playerIds = ['player1', 'player2', 'player3', 'player4'];
+
+    playerIds.forEach((playerId, index) => {
+        const playerData = playersData[`player${index + 1}hand`];
+        const playerDiv = document.getElementById(playerId);
+        if (!playerDiv) return;
+
+        playerData.forEach(cardId => {
+            const imageUrl = getCardImageUrl(cardId);
+            if (imageUrl) {
+                const cardElement = createCardElement(imageUrl);
+                playerDiv.appendChild(cardElement);
+                // Add event listeners for drag events
+                cardElement.addEventListener('dragstart', dragStart);
+                cardElement.addEventListener('dragend', dragEnd);
             }
-            return await response.json();
-        } catch (error) {
-            console.error('There was a problem fetching data:', error);
+        });
+    });
+}
+
+// Function to handle drag start event
+function dragStart(e) {
+    e.target.classList.add('dragging');
+}
+
+// Function to handle drag end event
+function dragEnd(e) {
+    e.target.classList.remove('dragging');
+}
+
+// Fetch data from API and initialize
+async function init() {
+    const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/create-room');
+    populatePlayerHands(roomData);
+    displayRoomID(roomData);
+}
+
+// Display room ID
+function displayRoomID(roomData) {
+    if (!roomData || roomData.length === 0) return;
+
+    const roomID = roomData[0].gameroomid;
+    const roomIDElement = document.getElementById('roomID');
+    if (roomIDElement) {
+        roomIDElement.textContent = `ROOM ID: ${roomID}`;
+    }
+}
+
+// Fetch data function
+async function fetchData(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        return await response.json();
+    } catch (error) {
+        console.error('There was a problem fetching data:', error);
     }
+}
 
-    function populatePlayerHands(roomData) {
-        if (!roomData || roomData.length === 0) return;
+// Initialize
+init();
 
-        const playersData = roomData[0];
-        const playerIds = ['player1', 'player2', 'player3', 'player4'];
-        console.log(playersData['player2hand'])
-
-     
-            const playerData = playersData['player2hand'];
-            const playerDiv = document.getElementById(playerId);
-            if (!playerDiv) return;
-
-            playerData.forEach(cardId => {
-                const imageUrl = getCardImageUrl(cardId);
-                if (imageUrl) {
-                    const cardElement = createCardElement(imageUrl);
-                    playerDiv.appendChild(cardElement);
-                }
-            });
-
-    }
-
-    function getCardImageUrl(cardId) {
-        const card = cards.find(c => c.id === cardId);
-        if (card) {
-            return `https://raw.githubusercontent.com/johnbernad6/swift-card-game/main/PinoyPoker/Assets.xcassets/${card.name}.imageset/${card.name}.png`;
-        }
-        return "";
-    }
-
-    function createCardElement(imageUrl) {
-        const cardDiv = document.createElement("div");
-        cardDiv.className = "card";
-        const img = document.createElement("img");
-        img.src = imageUrl;
-        img.alt = "Card";
-        cardDiv.appendChild(img);
-        return cardDiv;
-    }
-
-    async function init() {
-        const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/join-room?gameroomid=1114');
-        populatePlayerHands(roomData);
-        displayRoomID(roomData);
-    }
-
-    function displayRoomID(roomData) {
-        if (!roomData || roomData.length === 0) return;
-
-        const roomID = roomData[0].gameroomid;
-        const roomIDElement = document.getElementById('roomID');
-        if (roomIDElement) {
-            roomIDElement.textContent = `ROOM ID: ${roomID}`;
-        }
-    }
-
-    init();
 </script>
 
 </body>
