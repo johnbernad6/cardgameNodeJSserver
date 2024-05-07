@@ -9,13 +9,16 @@
     .player {
         display: flex;
     }
+    .draggable {
+        cursor: grab;
+        margin: 5px; /* added margin to separate the cards */
+    }
     .draggable img {
         width: 80%;
         height: auto;
         max-width: 100px;
         border: solid 2px black;
         border-radius: 10px;
-        cursor: grab;
     }
 </style>
 </head>
@@ -155,10 +158,12 @@ function displayRoomID(roomData) {
 
 init();
 
-function startDrag(e) {
-    const draggableDiv = e.target.closest('.draggable');
-    if (!draggableDiv) return;
+document.addEventListener('mousedown', startDrag);
 
+function startDrag(e) {
+    if (!e.target.classList.contains('draggable')) return;
+  
+    const draggableDiv = e.target;
     const offsetX = e.clientX - draggableDiv.getBoundingClientRect().left;
     const offsetY = e.clientY - draggableDiv.getBoundingClientRect().top;
 
