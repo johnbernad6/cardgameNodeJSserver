@@ -25,23 +25,32 @@
 
 <script>
 
-  //   var draggableElement = document.getElementById('draggable');
-  // var offsetX, offsetY;
+  document.addEventListener('DOMContentLoaded', function () {
+  const draggables = document.querySelectorAll('.card');
 
-  // draggableElement.addEventListener('dragstart', function(e) {
-  //   offsetX = e.clientX - draggableElement.getBoundingClientRect().left;
-  //   offsetY = e.clientY - draggableElement.getBoundingClientRect().top;
-  // });
+  draggables.forEach(draggable => {
+    draggable.addEventListener('mousedown', (e) => {
+      const startX = e.clientX - draggable.getBoundingClientRect().left;
+      const startY = e.clientY - draggable.getBoundingClientRect().top;
 
-  // document.addEventListener('dragover', function(e) {
-  //   e.preventDefault();
-  // });
+      function onMouseMove(e) {
+        const left = e.clientX - startX;
+        const top = e.clientY - startY;
+        draggable.style.left = `${left}px`;
+        draggable.style.top = `${top}px`;
+      }
 
-  // document.addEventListener('drop', function(e) {
-  //   e.preventDefault();
-  //   draggableElement.style.left = (e.clientX - offsetX) + 'px';
-  //   draggableElement.style.top = (e.clientY - offsetY) + 'px';
-  // });
+      function onMouseUp() {
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+      }
+
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    });
+  });
+});
+
     
  const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
