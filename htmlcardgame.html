@@ -12,9 +12,10 @@
     .draggable {
         cursor: grab;
         margin: 5px; /* added margin to separate the cards */
+        position: relative;
     }
     .draggable img {
-        width: 80%;
+        width: 100%;
         height: auto;
         max-width: 100px;
         border: solid 2px black;
@@ -135,7 +136,6 @@ function createCardElement(imageUrl) {
     const img = document.createElement("img");
     img.src = imageUrl;
     img.alt = "Card";
-    img.setAttribute("draggable", "false");
     cardDiv.appendChild(img);
     return cardDiv;
 }
@@ -162,22 +162,22 @@ document.addEventListener('mousedown', startDrag);
 
 function startDrag(e) {
     if (!e.target.classList.contains('draggable')) return;
-  
-    const draggableDiv = e.target;
-    const offsetX = e.clientX - draggableDiv.getBoundingClientRect().left;
-    const offsetY = e.clientY - draggableDiv.getBoundingClientRect().top;
 
-    function moveElement(event) {
-        draggableDiv.style.left = (event.clientX - offsetX) + 'px';
-        draggableDiv.style.top = (event.clientY - offsetY) + 'px';
+    const draggableCard = e.target;
+    const offsetX = e.clientX - draggableCard.getBoundingClientRect().left;
+    const offsetY = e.clientY - draggableCard.getBoundingClientRect().top;
+
+    function moveCard(event) {
+        draggableCard.style.left = (event.clientX - offsetX) + 'px';
+        draggableCard.style.top = (event.clientY - offsetY) + 'px';
     }
 
     function stopDrag() {
-        document.removeEventListener('mousemove', moveElement);
+        document.removeEventListener('mousemove', moveCard);
         document.removeEventListener('mouseup', stopDrag);
     }
 
-    document.addEventListener('mousemove', moveElement);
+    document.addEventListener('mousemove', moveCard);
     document.addEventListener('mouseup', stopDrag);
 }
 </script>
