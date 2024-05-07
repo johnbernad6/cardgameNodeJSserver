@@ -141,6 +141,8 @@ function createCardElement(imageUrl) {
     const img = document.createElement("img");
     img.src = imageUrl;
     img.alt = "Card";
+    img.setAttribute("draggable", "false"); // Make the img not draggable
+
     cardDiv.appendChild(img);
     return cardDiv;
 }
