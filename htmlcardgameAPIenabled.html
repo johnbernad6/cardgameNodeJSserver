@@ -150,19 +150,19 @@
         return "";
     }
 
-    function createCardElement(imageUrl) {
-        const cardDiv = document.createElement("div");
-        cardDiv.className = "card";
-        cardDiv.setAttribute("id", "draggable"); // Adding id attribute
-        cardDiv.setAttribute("draggable", "true"); // Adding draggable attribute
-        
-        const img = document.createElement("img");
-        img.src = imageUrl;
-        img.alt = "Card";
-        cardDiv.appendChild(img);
-        return cardDiv;
-    }
+function createCardElement(imageUrl) {
+    const cardDiv = document.createElement("div");
+    cardDiv.className = "card";
+    cardDiv.setAttribute("id", "draggable"); // Adding id attribute
+    cardDiv.setAttribute("draggable", "true"); // Adding draggable attribute
+    cardDiv.style.cursor = "grab"; // Adding cursor style
 
+    const img = document.createElement("img");
+    img.src = imageUrl;
+    img.alt = "Card";
+    cardDiv.appendChild(img);
+    return cardDiv;
+}
     async function init() {
         const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/create-room');
         populatePlayerHands(roomData);
