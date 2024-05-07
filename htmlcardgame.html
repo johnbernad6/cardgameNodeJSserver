@@ -175,11 +175,21 @@ function startDrag(e) {
     const draggableCard = e.target;
     const offsetX = e.clientX - draggableCard.getBoundingClientRect().left;
     const offsetY = e.clientY - draggableCard.getBoundingClientRect().top;
-    // const offsetX = 0;
-    // const offsetY = 0;
+
     function moveCard(event) {
-        draggableCard.style.left = (event.clientX - offsetX) + 'px';
-        draggableCard.style.top = (event.clientY - offsetY) + 'px';
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+        const newLeft = mouseX - offsetX;
+        const newTop = mouseY - offsetY;
+
+        // Ensure the card stays within the viewport bounds
+        const maxX = window.innerWidth - draggableCard.offsetWidth;
+        const maxY = window.innerHeight - draggableCard.offsetHeight;
+        const constrainedX = Math.min(Math.max(0, newLeft), maxX);
+        const constrainedY = Math.min(Math.max(0, newTop), maxY);
+
+        draggableCard.style.left = constrainedX + 'px';
+        draggableCard.style.top = constrainedY + 'px';
     }
 
     function stopDrag() {
@@ -190,6 +200,7 @@ function startDrag(e) {
     document.addEventListener('mousemove', moveCard);
     document.addEventListener('mouseup', stopDrag);
 }
+
 </script>
 
 </body>
