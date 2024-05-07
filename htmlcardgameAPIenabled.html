@@ -28,32 +28,24 @@
 
 <script>
 
-  document.addEventListener('DOMContentLoaded', function () {
-  const draggables = document.querySelectorAll('.draggable');
-
-  draggables.forEach(draggable => {
-    draggable.addEventListener('mousedown', (e) => {
-      const startX = e.clientX - draggable.getBoundingClientRect().left;
-      const startY = e.clientY - draggable.getBoundingClientRect().top;
-
-      function onMouseMove(e) {
-        const left = e.clientX - startX;
-        const top = e.clientY - startY;
-        draggable.style.left = `${left}px`;
-        draggable.style.top = `${top}px`;
-      }
-
-      function onMouseUp() {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-      }
-
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-    });
-  });
-});
-
+  function startDrag(e) {
+    var draggableDiv = document.getElementsByClassName('card');
+    var offsetX = e.clientX - draggableDiv.getBoundingClientRect().left;
+    var offsetY = e.clientY - draggableDiv.getBoundingClientRect().top;
+    
+    function moveElement(event) {
+      draggableDiv.style.left = (event.clientX - offsetX) + 'px';
+      draggableDiv.style.top = (event.clientY - offsetY) + 'px';
+    }
+    
+    function stopDrag() {
+      document.removeEventListener('mousemove', moveElement);
+      document.removeEventListener('mouseup', stopDrag);
+    }
+    
+    document.addEventListener('mousemove', moveElement);
+    document.addEventListener('mouseup', stopDrag);
+  }
     
  const cards = [
        { "id": 1, "name": "cardDiamonds_A" },
