@@ -173,13 +173,13 @@ function startDrag(e) {
     if (!e.target.classList.contains('draggable')) return;
 
     const draggableCard = e.target;
-    // const offsetX = e.clientX - draggableCard.getBoundingClientRect().left;
-    // const offsetY = e.clientY - draggableCard.getBoundingClientRect().top;
-    const offsetX = 0;
-    const offsetY = 0;
+    const offsetX = e.clientX - draggableCard.getBoundingClientRect().left;
+    const offsetY = e.clientY - draggableCard.getBoundingClientRect().top;
+    // const offsetX = 0;
+    // const offsetY = 0;
     function moveCard(event) {
-        draggableCard.style.left = (event.clientX * offsetX) + 'px';
-        draggableCard.style.top = (event.clientY * offsetY) + 'px';
+        draggableCard.style.left = (event.clientX - offsetX) + 'px';
+        draggableCard.style.top = (event.clientY - offsetY) + 'px';
     }
 
     function stopDrag() {
