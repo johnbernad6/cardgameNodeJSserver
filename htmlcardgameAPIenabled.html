@@ -9,7 +9,7 @@
     .player {
         display: flex;
     }
-    .card img {
+    .draggable img {
         width: 80%; /* Adjusted size to be 80% smaller */
         height: auto; /* Automatically adjust height to maintain aspect ratio */
         max-width: 100px; /* Set a maximum width to prevent excessive shrinking */    
@@ -152,10 +152,10 @@
 
 function createCardElement(imageUrl) {
     const cardDiv = document.createElement("div");
-    cardDiv.className = "card";
+    cardDiv.className = "draggable";
     cardDiv.setAttribute("id", "draggable"); // Adding id attribute
     cardDiv.setAttribute("draggable", "true"); // Adding draggable attribute
-    cardDiv.style.cursor = "grab"; // Adding cursor style
+    // cardDiv.style.cursor = "grab"; // Adding cursor style
 
     const img = document.createElement("img");
     img.src = imageUrl;
