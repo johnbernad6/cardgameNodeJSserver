@@ -157,12 +157,13 @@ function createCardElement(imageUrl) {
     const cardDiv = document.createElement("div");
     cardDiv.className = "draggable";
     cardDiv.setAttribute("id", "draggable"); // Adding id attribute
-    cardDiv.setAttribute("draggable", "false"); // Adding draggable attribute
+
     // cardDiv.style.cursor = "grab"; // Adding cursor style
 
     const img = document.createElement("img");
     img.src = imageUrl;
     img.alt = "Card";
+        img.setAttribute("draggable", "false"); // Adding draggable attribute
     cardDiv.appendChild(img);
     return cardDiv;
 }
