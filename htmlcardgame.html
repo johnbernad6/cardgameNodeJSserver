@@ -10,7 +10,6 @@
         display: flex;
     }
     .draggable {
-/*         cursor: grab; */
         margin: 5px; /* added margin to separate the cards */
         position: relative;
         z-index: 2;
@@ -143,7 +142,7 @@ function createCardElement(imageUrl) {
     img.src = imageUrl;
     img.alt = "Card";
     img.setAttribute("draggable", "false"); // Make the img not draggable
-        img.className = "draggable";
+    img.className = "draggable";
 
     cardDiv.appendChild(img);
     return cardDiv;
@@ -168,6 +167,7 @@ function displayRoomID(roomData) {
 init();
 
 document.addEventListener('pointerdown', startDrag);
+document.addEventListener('touchstart', startDragTouch);
 
 function startDrag(e) {
     if (!e.target.classList.contains('draggable')) return;
@@ -191,6 +191,32 @@ function startDrag(e) {
 
     document.addEventListener('pointermove', moveCard);
     document.addEventListener('pointerup', stopDrag);
+}
+
+function startDragTouch(e) {
+    e.preventDefault();
+
+    if (!e.target.classList.contains('draggable')) return;
+
+    const draggableCard = e.target;
+    const rect = draggableCard.getBoundingClientRect();
+    const offsetX = e.touches[0].clientX - rect.left;
+    const offsetY = e.touches[0].clientY - rect.top;
+
+    function moveCard(event) {
+        const newLeft = event.touches[0].clientX - offsetX;
+        const newTop = event.touches[0].clientY - offsetY;
+
+        updateCardPosition(draggableCard, newLeft, newTop);
+    }
+
+    function stopDrag() {
+        document.removeEventListener('touchmove', moveCard);
+        document.removeEventListener('touchend', stopDrag);
+    }
+
+    document.addEventListener('touchmove', moveCard);
+    document.addEventListener('touchend', stopDrag);
 }
 
 function updateCardPosition(card, left, top) {
