@@ -173,10 +173,11 @@ document.addEventListener('pointerdown', startDrag);
 document.addEventListener('touchstart', startDragTouch);
 
 function startDrag(e) {
-console.log('Start drag called ' + e.clientX + ' ' + rect.left);
+
     
     if (!e.target.classList.contains('draggable')) return;
-
+    
+    console.log('Start drag called ' + e.clientX + ' ' + rect.left);
     const draggableCard = e.target;
     const rect = draggableCard.getBoundingClientRect();
     const offsetX = e.clientX - rect.left;
