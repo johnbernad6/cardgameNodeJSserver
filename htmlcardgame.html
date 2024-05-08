@@ -181,8 +181,8 @@ function startDrag(e) {
     const offsetY = e.clientY - rect.top;
 
     function moveCard(event) {
-        const newLeft = event.clientX - offsetX;
-        const newTop = event.clientY - offsetY;
+        const newLeft = event.clientX - (0.02*offsetX);
+        const newTop = event.clientY - (0.02*offsetY);
 
         updateCardPosition(draggableCard, newLeft, newTop);
     }
@@ -207,8 +207,6 @@ function startDragTouch(e) {
     const offsetY = e.touches[0].clientY - rect.top;
 
     function moveCard(event) {
-        // const newLeft = event.touches[0].clientX - offsetX;
-        // const newTop = event.touches[0].clientY - offsetY;
 
         const newLeft = event.touches[0].clientX;
         const newTop = event.touches[0].clientY;
