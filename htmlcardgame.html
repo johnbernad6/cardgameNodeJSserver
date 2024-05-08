@@ -173,6 +173,8 @@ document.addEventListener('pointerdown', startDrag);
 document.addEventListener('touchstart', startDragTouch);
 
 function startDrag(e) {
+console.log('Start drag called ' + e.clientX + ' ' + rect.left);
+    
     if (!e.target.classList.contains('draggable')) return;
 
     const draggableCard = e.target;
