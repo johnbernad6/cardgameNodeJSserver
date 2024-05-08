@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draggable Div</title>
+<style>
+  .draggable {
+    width: 100px;
+    height: 100px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    line-height: 100px;
+    position: absolute;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div id="draggable" class="draggable">
+  Drag me!
+</div>
+
+<script>
+  var draggable = document.getElementById('draggable');
+  var offsetX, offsetY;
+
+  draggable.addEventListener('mousedown', onMouseDown);
+  draggable.addEventListener('touchstart', onTouchStart);
+
+  function onMouseDown(e) {
+    e.preventDefault();
+    offsetX = e.clientX - draggable.getBoundingClientRect().left;
+    offsetY = e.clientY - draggable.getBoundingClientRect().top;
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  }
+
+  function onMouseMove(e) {
+    var x = e.clientX - offsetX;
+    var y = e.clientY - offsetY;
+    draggable.style.left = x + 'px';
+    draggable.style.top = y + 'px';
+  }
+
+  function onMouseUp() {
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  }
+
+  function onTouchStart(e) {
+    e.preventDefault();
+    var touch = e.touches[0];
+    offsetX = touch.clientX - draggable.getBoundingClientRect().left;
+    offsetY = touch.clientY - draggable.getBoundingClientRect().top;
+    document.addEventListener('touchmove', onTouchMove);
+    document.addEventListener('touchend', onTouchEnd);
+  }
+
+  function onTouchMove(e) {
+    var touch = e.touches[0];
+    var x = touch.clientX - offsetX;
+    var y = touch.clientY - offsetY;
+    draggable.style.left = x + 'px';
+    draggable.style.top = y + 'px';
+  }
+
+  function onTouchEnd() {
+    document.removeEventListener('touchmove', onTouchMove);
+    document.removeEventListener('touchend', onTouchEnd);
+  }
+</script>
+</body>
+</html>
