@@ -181,8 +181,8 @@ function startDrag(e) {
     const offsetY = e.clientY - rect.top;
 
     function moveCard(event) {
-        const newLeft = event.clientX - (0.2*offsetX);
-        const newTop = event.clientY - (0.2*offsetY);
+        const newLeft = event.clientX - offsetX;
+        const newTop = event.clientY - offsetY;
 
         updateCardPosition(draggableCard, newLeft, newTop);
     }
