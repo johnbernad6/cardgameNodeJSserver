@@ -177,13 +177,14 @@ function startDrag(e) {
     
     if (!e.target.classList.contains('draggable')) return;
     
-    console.log('Start drag called ' + e.clientX + ' ' + rect.left);
+
     const draggableCard = e.target;
     const rect = draggableCard.getBoundingClientRect();
     const offsetX = e.clientX - rect.left;
     const offsetY = e.clientY - rect.top;
 
     function moveCard(event) {
+            console.log('Start drag called ' + e.clientX + ' ' + rect.left);
         const newLeft = event.clientX - offsetX;
         const newTop = event.clientY - offsetY;
 
