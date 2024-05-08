@@ -10,17 +10,23 @@
         display: flex;
     }
     .draggable {
+/*         cursor: grab; */
         margin: 5px; /* added margin to separate the cards */
         position: relative;
         z-index: 2;
-        width: 100px; /* added width */
-        height: 150px; /* added height */
-        background-size: cover; /* added background-size */
-        background-position: center; /* added background-position */
     }
-    img {
-        display: none; /* hide the img tag */
+    .draggable img {
+        width: 100%;
+        height: auto;
+        max-width: 100px;
+        border: solid 2px black;
+        border-radius: 10px;
     }
+     img {
+        position: relative;
+        z-index: 1;
+    }
+    
 </style>
 </head>
 <body>
@@ -124,7 +130,7 @@
     function getCardImageUrl(cardId) {
         const card = cards.find(c => c.id === cardId);
         if (card) {
-            return `url(https://raw.githubusercontent.com/johnbernad6/swift-card-game/main/PinoyPoker/Assets.xcassets/${card.name}.imageset/${card.name}.png)`;
+            return `https://raw.githubusercontent.com/johnbernad6/swift-card-game/main/PinoyPoker/Assets.xcassets/${card.name}.imageset/${card.name}.png`;
         }
         return "";
     }
@@ -132,6 +138,73 @@
 function createCardElement(imageUrl) {
     const cardDiv = document.createElement("div");
     cardDiv.className = "draggable";
-    cardDiv.style.backgroundImage = imageUrl; // set background image
 
-    return
+    const img = document.createElement("img");
+    img.src = imageUrl;
+    img.alt = "Card";
+    img.setAttribute("draggable", "false"); // Make the img not draggable
+        img.className = "draggable";
+
+    cardDiv.appendChild(img);
+    return cardDiv;
+}
+
+async function init() {
+    const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/create-room');
+    populatePlayerHands(roomData);
+    displayRoomID(roomData);
+}
+
+function displayRoomID(roomData) {
+    if (!roomData || roomData.length === 0) return;
+
+    const roomID = roomData[0].gameroomid;
+    const roomIDElement = document.getElementById('roomID');
+    if (roomIDElement) {
+        roomIDElement.textContent = `ROOM ID: ${roomID}`;
+    }
+}
+
+init();
+
+document.addEventListener('pointerdown', startDrag);
+
+function startDrag(e) {
+    if (!e.target.classList.contains('draggable')) return;
+
+    const draggableCard = e.target;
+    const rect = draggableCard.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
+
+    function moveCard(event) {
+        const newLeft = event.clientX - offsetX;
+        const newTop = event.clientY - offsetY;
+
+        updateCardPosition(draggableCard, newLeft, newTop);
+    }
+
+    function stopDrag() {
+        document.removeEventListener('pointermove', moveCard);
+        document.removeEventListener('pointerup', stopDrag);
+    }
+
+    document.addEventListener('pointermove', moveCard);
+    document.addEventListener('pointerup', stopDrag);
+}
+
+function updateCardPosition(card, left, top) {
+    const maxX = window.innerWidth - card.offsetWidth;
+    const maxY = window.innerHeight - card.offsetHeight;
+    const constrainedX = Math.min(Math.max(0, left), maxX);
+    const constrainedY = Math.min(Math.max(0, top), maxY);
+
+    card.style.left = constrainedX + 'px';
+    card.style.top = constrainedY + 'px';
+}
+
+
+</script>
+
+</body>
+</html>
