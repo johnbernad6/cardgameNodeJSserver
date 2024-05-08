@@ -180,8 +180,9 @@ function startDrag(e) {
 
     const draggableCard = e.target;
     const rect = draggableCard.getBoundingClientRect();
-    const offsetX = e.clientX - rect.left;
-    const offsetY = e.clientY - rect.top;
+    const offsetX = e.clientX - draggableCard.getBoundingClientRect().left;
+    const offsetY = e.clientY - draggableCard.getBoundingClientRect().top;
+
 
     function moveCard(event) {
             console.log('Start drag called ' + e.clientX + ' ' + rect.left);
@@ -207,8 +208,9 @@ function startDragTouch(e) {
 
     const draggableCard = e.target;
     const rect = draggableCard.getBoundingClientRect();
-    const offsetX = e.touches[0].clientX - rect.left;
-    const offsetY = e.touches[0].clientY - rect.top;
+    const offsetX = e.clientX - draggableCard.getBoundingClientRect().left;
+    const offsetY = e.clientY - draggableCard.getBoundingClientRect().top;
+
 
     function moveCard(event) {
 
