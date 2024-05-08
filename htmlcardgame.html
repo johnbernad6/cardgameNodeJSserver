@@ -167,39 +167,42 @@ function displayRoomID(roomData) {
 
 init();
 
-document.addEventListener('mousedown', startDrag);
+document.addEventListener('pointerdown', startDrag);
 
 function startDrag(e) {
     if (!e.target.classList.contains('draggable')) return;
 
     const draggableCard = e.target;
-    const offsetX = e.clientX - draggableCard.getBoundingClientRect().left;
-    const offsetY = e.clientY - draggableCard.getBoundingClientRect().top;
+    const rect = draggableCard.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
 
     function moveCard(event) {
-        const mouseX = event.clientX;
-        const mouseY = event.clientY;
-        const newLeft = mouseX - offsetX;
-        const newTop = mouseY - offsetY;
+        const newLeft = event.clientX - offsetX;
+        const newTop = event.clientY - offsetY;
 
-        // Ensure the card stays within the viewport bounds
-        const maxX = window.innerWidth - draggableCard.offsetWidth;
-        const maxY = window.innerHeight - draggableCard.offsetHeight;
-        const constrainedX = Math.min(Math.max(0, newLeft), maxX);
-        const constrainedY = Math.min(Math.max(0, newTop), maxY);
-
-        draggableCard.style.left = constrainedX + 'px';
-        draggableCard.style.top = constrainedY + 'px';
+        updateCardPosition(draggableCard, newLeft, newTop);
     }
 
     function stopDrag() {
-        document.removeEventListener('mousemove', moveCard);
-        document.removeEventListener('mouseup', stopDrag);
+        document.removeEventListener('pointermove', moveCard);
+        document.removeEventListener('pointerup', stopDrag);
     }
 
-    document.addEventListener('mousemove', moveCard);
-    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('pointermove', moveCard);
+    document.addEventListener('pointerup', stopDrag);
 }
+
+function updateCardPosition(card, left, top) {
+    const maxX = window.innerWidth - card.offsetWidth;
+    const maxY = window.innerHeight - card.offsetHeight;
+    const constrainedX = Math.min(Math.max(0, left), maxX);
+    const constrainedY = Math.min(Math.max(0, top), maxY);
+
+    card.style.left = constrainedX + 'px';
+    card.style.top = constrainedY + 'px';
+}
+
 
 </script>
 
