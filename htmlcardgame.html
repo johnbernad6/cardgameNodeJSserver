@@ -6,7 +6,7 @@
 <title>Card Game</title>
     
 <style>
-     body {
+    body {
         overflow: hidden; /* Disable page scrolling */
     }
     .player {
@@ -14,10 +14,7 @@
 /*         display: flex; */
     }
     .draggable {
-/*         position: absolute; */
-        left: 0;
-        top: 0;
-        margin: 5px; /* added margin to separate the cards */
+        margin-left: -50px; /* Adjust margin to control overlap */
         position: relative;
         z-index: 2;
     }
@@ -32,6 +29,7 @@
         position: relative;
         z-index: 1;
     }
+    
     
 </style>
 </head>
