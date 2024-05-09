@@ -121,13 +121,13 @@
             const playerData = playersData[`player${index + 1}hand`];
             const playerDiv = document.getElementById(playerId);
             if (!playerDiv) return;
-
+let verticalPosition;
             playerData.forEach((cardId, index) => {
                 const imageUrl = getCardImageUrl(cardId);
                 if (imageUrl) {
                     const cardElement = createCardElement(imageUrl);
                     // Calculate the vertical position based on the index
-                    var verticalPosition = index * -20; // Adjust the multiplier as needed
+                    verticalPosition = index * -20; // Adjust the multiplier as needed
                     cardElement.style.top = `${verticalPosition}px`;
                     playerDiv.appendChild(cardElement);
                 }
