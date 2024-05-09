@@ -212,13 +212,13 @@ function startDragTouch(e) {
     const offsetY = e.clientY - draggableCard.getBoundingClientRect().top;
 
 
-    function moveCard(event) {
+function moveCard(event) {
+    const newLeft = event.touches[0].clientX - offsetX;
+    const newTop = event.touches[0].clientY - offsetY;
 
-        const newLeft = event.touches[0].clientX;
-        const newTop = event.touches[0].clientY;
-        
-        updateCardPosition(draggableCard, newLeft, newTop);
-    }
+    updateCardPosition(draggableCard, newLeft, newTop);
+}
+
 
     function stopDrag() {
         document.removeEventListener('touchmove', moveCard);
