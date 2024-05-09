@@ -122,10 +122,13 @@
             const playerDiv = document.getElementById(playerId);
             if (!playerDiv) return;
 
-            playerData.forEach(cardId => {
+            playerData.forEach((cardId, index) => {
                 const imageUrl = getCardImageUrl(cardId);
                 if (imageUrl) {
                     const cardElement = createCardElement(imageUrl);
+                    // Calculate the vertical position based on the index
+                    const verticalPosition = index * 20; // Adjust the multiplier as needed
+                    cardElement.style.top = `${verticalPosition}px`;
                     playerDiv.appendChild(cardElement);
                 }
             });
