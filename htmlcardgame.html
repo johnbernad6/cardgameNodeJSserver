@@ -216,7 +216,13 @@ function moveCard(event) {
     const newLeft = event.touches[0].clientX - offsetX;
     const newTop = event.touches[0].clientY - offsetY;
 
-    updateCardPosition(draggableCard, newLeft, newTop);
+    // Ensure the card stays within the viewport
+    const maxX = window.innerWidth - draggableCard.offsetWidth;
+    const maxY = window.innerHeight - draggableCard.offsetHeight;
+    const constrainedX = Math.min(Math.max(0, newLeft), maxX);
+    const constrainedY = Math.min(Math.max(0, newTop), maxY);
+
+    updateCardPosition(draggableCard, constrainedX, constrainedY);
 }
 
 
