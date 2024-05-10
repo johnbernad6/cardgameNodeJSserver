@@ -122,16 +122,18 @@
         const playerDiv = document.getElementById(playerId);
         if (!playerDiv) return;
 
-        const stackOffsetX = 20; // Adjust this value to control horizontal overlap
         let offsetX = 0;
+        let offsetY = 0;
 
-        playerData.forEach((cardId, index) => {
+        playerData.forEach((cardId) => {
             const imageUrl = getCardImageUrl(cardId);
             if (imageUrl) {
                 const cardElement = createCardElement(imageUrl);
                 cardElement.style.left = `${offsetX}px`;
+                cardElement.style.top = `${offsetY}px`;
                 playerDiv.appendChild(cardElement);
-                offsetX += stackOffsetX;
+                offsetX += 20; // Adjust this value to control horizontal overlap
+                offsetY += 20; // Adjust this value to control vertical overlap
             }
         });
     });
