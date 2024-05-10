@@ -112,29 +112,31 @@
     }
 
     function populatePlayerHands(roomData) {
-        if (!roomData || roomData.length === 0) return;
+    if (!roomData || roomData.length === 0) return;
 
-        const playersData = roomData[0];
-        const playerIds = ['player1', 'player2', 'player3', 'player4'];
+    const playersData = roomData[0];
+    const playerIds = ['player1', 'player2', 'player3', 'player4'];
 
-        playerIds.forEach((playerId, index) => {
-            const playerData = playersData[`player${index + 1}hand`];
-            const playerDiv = document.getElementById(playerId);
-            if (!playerDiv) return;
-let verticalPosition;
-            playerData.forEach((cardId, index) => {
-                const imageUrl = getCardImageUrl(cardId);
-                if (imageUrl) {
-                    const cardElement = createCardElement(imageUrl);
-                    // Calculate the vertical position based on the index
-                    cardElement.style.top = '0px';
-                    cardElement.style.left = `${index * 80}px`;
-                    playerDiv.appendChild(cardElement);
-                }
-            });
+    playerIds.forEach((playerId, index) => {
+        const playerData = playersData[`player${index + 1}hand`];
+        const playerDiv = document.getElementById(playerId);
+        if (!playerDiv) return;
+
+        const stackOffsetX = 20; // Adjust this value to control horizontal overlap
+        let offsetX = 0;
+
+        playerData.forEach((cardId, index) => {
+            const imageUrl = getCardImageUrl(cardId);
+            if (imageUrl) {
+                const cardElement = createCardElement(imageUrl);
+                cardElement.style.left = `${offsetX}px`;
+                playerDiv.appendChild(cardElement);
+                offsetX += stackOffsetX;
+            }
         });
-      
-    }
+    });
+}
+
 
     function getCardImageUrl(cardId) {
         const card = cards.find(c => c.id === cardId);
