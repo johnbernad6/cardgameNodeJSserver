@@ -127,8 +127,8 @@ let verticalPosition;
                 if (imageUrl) {
                     const cardElement = createCardElement(imageUrl);
                     // Calculate the vertical position based on the index
-                    verticalPosition = index * -20; // Adjust the multiplier as needed
-                    cardElement.style.top = `${verticalPosition}px`;
+                    cardElement.style.top = '0px';
+                    cardElement.style.left = `${index * 20}px`;
                     playerDiv.appendChild(cardElement);
                 }
             });
