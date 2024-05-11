@@ -136,10 +136,10 @@ function populatePlayerHands(roomData) {
             const imageUrl = getCardImageUrl(cardId);
             if (imageUrl) {
                 const cardElement = createCardElement(imageUrl);
-                cardElement.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                cardElement.style.transform = `translate(${offsetX}vw, ${offsetY}vw)`;
                 cardElement.style.zIndex = zIndex; // Set z-index
                 playerDiv.appendChild(cardElement);
-                offsetX -= 80; // Adjust this value to control horizontal overlap
+                offsetX -= 5; // Adjust this value to control horizontal overlap
                 // offsetY -= 20; // Adjust this value to control vertical overlap
                 zIndex++; // Increase zIndex for next card
             }
