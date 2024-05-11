@@ -111,7 +111,7 @@
         }
     }
 
-    function populatePlayerHands(roomData) {
+function populatePlayerHands(roomData) {
     if (!roomData || roomData.length === 0) return;
 
     const playersData = roomData[0];
@@ -129,15 +129,15 @@
             const imageUrl = getCardImageUrl(cardId);
             if (imageUrl) {
                 const cardElement = createCardElement(imageUrl);
-                cardElement.style.left = `${offsetX}px`;
-                cardElement.style.top = `${offsetY}px`;
+                cardElement.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
                 playerDiv.appendChild(cardElement);
-                offsetX += -550; // Adjust this value to control horizontal overlap
-                offsetY += -550; // Adjust this value to control vertical overlap
+                offsetX -= 550; // Adjust this value to control horizontal overlap
+                offsetY -= 550; // Adjust this value to control vertical overlap
             }
         });
     });
 }
+
 
 
     function getCardImageUrl(cardId) {
