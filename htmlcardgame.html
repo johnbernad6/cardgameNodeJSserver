@@ -130,9 +130,9 @@ function populatePlayerHands(roomData) {
 
         let offsetX = 0;
         let offsetY = 0;
-        let zIndex = playerData.length; // Start zIndex from the number of cards
+        let zIndex = 1; // Start zIndex from 1
 
-        playerData.forEach((cardId) => {
+        playerData.reverse().forEach((cardId) => {
             const imageUrl = getCardImageUrl(cardId);
             if (imageUrl) {
                 const cardElement = createCardElement(imageUrl);
@@ -141,11 +141,12 @@ function populatePlayerHands(roomData) {
                 playerDiv.appendChild(cardElement);
                 offsetX -= 80; // Adjust this value to control horizontal overlap
                 // offsetY -= 20; // Adjust this value to control vertical overlap
-                zIndex--; // Decrease zIndex for next card
+                zIndex++; // Increase zIndex for next card
             }
         });
     });
 }
+
 
 
 
