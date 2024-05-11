@@ -17,7 +17,7 @@
     .player {
 /*         position: absolute; */
         display: flex;
-    transform: translateX(1vw); /* Adjust the value as needed */
+    transform: translateX(3vw); /* Adjust the value as needed */
     }
     .draggable {
 /*         margin: 50px; /* Adjust margin to control overlap */ */
@@ -35,8 +35,12 @@
         border-radius: 10px;
     }
      img {
-        position: relative;
         z-index: 1;
+            position: absolute;
+    width: 100%; /* Makes the image fill the width of its parent */
+    height: auto; /* Allows the image to maintain its aspect ratio */
+    top: 0;
+    left: 0;
     }
     
     
