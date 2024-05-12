@@ -175,6 +175,7 @@ function createCardElement(imageUrl) {
     img.alt = "Card";
     img.setAttribute("draggable", "false"); // Make the img not draggable
     img.className = "draggable";
+    img.style.backgroundColor = 'white'; // Set background color to white
 
     cardDiv.appendChild(img);
     return cardDiv;
