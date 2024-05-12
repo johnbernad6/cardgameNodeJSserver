@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game Screen</title>
 <style>
-    body {
+/*     body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
@@ -14,7 +14,7 @@
         align-items: center;
         height: 100vh;
         background-color: #f0f0f0;
-    }
+    } */
     .container {
         text-align: center;
         background-color: #fff;
@@ -45,15 +45,43 @@
         width: 200px;
         text-align: center;
     }
-	.player {
-        display: flex;
+    * {
+    user-select: none;
     }
-    .card img {
-        width: 80%; /* Adjusted size to be 80% smaller */
-        height: auto; /* Automatically adjust height to maintain aspect ratio */
-        max-width: 100px; /* Set a maximum width to prevent excessive shrinking */    
+
+    body {
+        overflow: hidden; /* Disable page scrolling */
+        
+    }
+    .player {
+/*         position: absolute; */
+        width: 100vw;
+        display: flex;
+        left: 0px;
+    transform: translateX(30vw); /* Adjust the value as needed */
+    }
+    .draggable {
+/*         margin: 50px; /* Adjust margin to control overlap */ */
+        position: absolute;
+
+
+        
+
+    }
+    .draggable img {
+/*         width: 10vw;
+        height: auto; */
+/*         max-width: 100px; */
         border: solid 2px black;
-        border-radius:10px;
+        border-radius: 10px;
+    }
+     img {
+        position: relative;
+        z-index: 1;
+          width: 100%; /* Makes the image fill the width of its parent */
+    height: 100%; /* Makes the image fill the height of its parent */
+    object-fit: fill/* Scales the image to be as large as possible while maintaining aspect ratio */
+    background-color: white;
     }
 </style>
 </head>
@@ -206,13 +234,22 @@
             const playerDiv = document.getElementById(playerId);
             if (!playerDiv) return;
 
-            playerData.forEach(cardId => {
-                const imageUrl = getCardImageUrl(cardId);
-                if (imageUrl) {
-                    const cardElement = createCardElement(imageUrl);
-                    playerDiv.appendChild(cardElement);
-                }
-            });
+                 let offsetX = 0;
+        let offsetY = 0;
+        let zIndex = 1; // Start zIndex from 1
+
+        playerData.reverse().forEach((cardId) => {
+            const imageUrl = getCardImageUrl(cardId);
+            if (imageUrl) {
+                const cardElement = createCardElement(imageUrl);
+                cardElement.style.transform = `translate(${offsetX}vw, ${offsetY}vw)`;
+                cardElement.style.zIndex = zIndex; // Set z-index
+                playerDiv.appendChild(cardElement);
+                offsetX -= 10; // Adjust this value to control horizontal overlap
+                // offsetY -= 20; // Adjust this value to control vertical overlap
+                zIndex++; // Increase zIndex for next card
+            }
+        });
         });
     }
 
@@ -226,7 +263,7 @@
 
     function createCardElement(imageUrl) {
         const cardDiv = document.createElement("div");
-        cardDiv.className = "card";
+        cardDiv.className = "draggable";
         const img = document.createElement("img");
         img.src = imageUrl;
         img.alt = "Card";
