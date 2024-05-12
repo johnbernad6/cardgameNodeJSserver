@@ -121,9 +121,11 @@
                 throw new Error('Network response was not ok');
             }
             return await response.json();
+            
         } catch (error) {
             console.error('There was a problem fetching data:', error);
         }
+        
     }
 
 function populatePlayerHands(roomData) {
@@ -186,6 +188,7 @@ async function init() {
     const roomData = await fetchData('https://johnbernad6server-b837q.ondigitalocean.app/api/create-room');
     populatePlayerHands(roomData);
     displayRoomID(roomData);
+      setTimeout(moveCards, 1000);
 }
 
 function displayRoomID(roomData) {
@@ -198,6 +201,19 @@ function displayRoomID(roomData) {
     }
 }
 
+  function moveCards() {
+        const cards = document.querySelectorAll('.draggable');
+        const offsetX = 50; // Adjust this value to control horizontal movement
+        const offsetY = 50; // Adjust this value to control vertical movement
+
+        cards.forEach((card, index) => {
+            const newX = index * offsetX;
+            const newY = index * offsetY;
+            card.style.transform = `translate(${newX}px, ${newY}px)`;
+        });
+    }
+
+    
 init();
 
 document.addEventListener('pointerdown', startDrag);
