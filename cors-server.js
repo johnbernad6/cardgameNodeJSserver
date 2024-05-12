@@ -249,7 +249,7 @@ app.get('/CV', (req, res) => {
 });
 
 app.get('/play', (req, res) => {
-  res.sendFile(path.join(__dirname, 'htmlcardgameAPIenabled.html'));
+  res.sendFile(path.join(__dirname, 'startgame.html'));
 });
 
 // Update the /api/cards endpoint to accept a query parameter
