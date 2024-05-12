@@ -204,14 +204,14 @@ function displayRoomID(roomData) {
  function moveCards() {
         const cards = document.querySelectorAll('.draggable');
         const offsetX = 0; // Adjust this value to control horizontal movement
-        const offsetY = 20; // Adjust this value to control vertical movement
+        const offsetY = 25; // Adjust this value to control vertical movement
 
         cards.forEach((card, index) => {
             const newX = index * offsetX;
             const newY = index * offsetY;
             // Triggering the transition by adding the transform property directly to the style attribute
             card.style.transition = `transform 1s ease ${index * 0.1}s`; // Adding delay to stagger the animations
-            card.style.transform = `translate(${newX}px, ${newY}px)`;
+            card.style.transform = `translate(0px, ${newY}px)`;
         });
     }
 
