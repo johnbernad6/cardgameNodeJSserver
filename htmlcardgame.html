@@ -7,29 +7,44 @@
     
 <style>
     * {
-        user-select: none;
+    user-select: none;
     }
 
     body {
         overflow: hidden; /* Disable page scrolling */
+        
     }
-
     .player {
+/*         position: absolute; */
         display: flex;
         left: 0px;
-        transform: translateX(30vw); /* Adjust the value as needed */
+    transform: translateX(30vw); /* Adjust the value as needed */
     }
-
     .draggable {
+/*         margin: 50px; /* Adjust margin to control overlap */ */
         position: absolute;
-    }
 
+
+        
+
+    }
     .draggable img {
-        width: 100%; /* Makes the image fill the width of its parent */
-        height: 100%; /* Makes the image fill the height of its parent */
+/*         width: 10vw;
+        height: auto; */
+        max-width: 100px;
         border: solid 2px black;
         border-radius: 10px;
     }
+     img {
+        position: relative;
+        z-index: 1;
+          width: 100%; /* Makes the image fill the width of its parent */
+    height: 100%; /* Makes the image fill the height of its parent */
+    object-fit: fill/* Scales the image to be as large as possible while maintaining aspect ratio */
+
+    }
+    
+    
 </style>
 
 </head>
