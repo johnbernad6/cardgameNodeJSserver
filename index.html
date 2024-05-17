@@ -4,9 +4,80 @@
     <title>Hello World</title>
 </head>
     <style>
+
+.container1 {
+  margin: 0 auto;
+}
+
+.card1 {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  margin: 0 auto;
+  background: #000;
+  border-radius: 15px;
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
+}
+
+.face {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.face.back {
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.face.back b {
+  margin: 0;
+  padding: 0;
+}
+
+.face.back .desc {
+  background-color: #eee;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.face.front {
+  transition: 0.5s;
+}
+
+.face.front b {
+  margin: 0;
+  padding: 0;
+  font-size: 5.1em;
+  color: #fff;
+  transition: 0.5s;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.card1:hover .face.front {
+  height: 60px;
+}
+
+.card1:hover .face.front b {
+  font-size: 2em;
+}
+
+.face.front {
+  background-color: #0cbaba;
+  border-radius: 15px;
+}
         .scroll-1::-webkit-scrollbar {
   width: 8px;
   height: 8px;
+}
+.scroll-1 {
+  background-color: #212121; /* Add this line to change background color */
 }
 
 .scroll-1::-webkit-scrollbar-thumb {
@@ -22,85 +93,29 @@
 }
 
 .container {
+    justify-content: center; /* Center horizontally */
+  color: #212121;
   display: flex;
   overflow-x: scroll;
   padding: 24px;
-  width: 300px;
+  max-width: 100%;
   scroll-snap-type: x mandatory;
   scroll-padding-top: 24px;
   border-radius: 8px;
-  gap: 20px;
+  gap: 100px;
+margin: 10px;
+}
+body{
+
+    justify-content: center; /* Center horizontally */
 }
 
-.container .card {
-  flex: 0 0 100%;
-  overflow: hidden;
-  border-radius: 8px;
-  background-color: #141414;
-  scroll-snap-align: start;
-}
-
-.card .card__image {
-  flex: 1;
-  height: 140px;
-}
-
-.card:nth-child(1) .card__image {
-  background-image: linear-gradient(
-      to right top,
-      #051937, 
-      #004d7a, 
-      #008793, 
-      #00bf72, 
-      #a8eb12
-  );
-}
-
-.card:nth-child(2) .card__image {
-  background-image: linear-gradient(
-    to right top, 
-    #dc09a5, 
-    #ce00b4, 
-    #ba00c5, 
-    #9c00d8, 
-    #6f12eb
-  );
-}
-
-.card:nth-child(3) .card__image {
-  background-image: linear-gradient(
-    to right top, 
-    #dc1009, 
-    #e55f00, 
-    #e49200, 
-    #dac000, 
-    #c7eb12
-  );
-}
-
-.card .card__content {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-}
-
-.card .card__content .card__title {
-  font-size: 32px;
-  color: #fff;
-  text-transform: capitalize;
-}
-
-.card .card__content .card__describe {
-  color: #fff;
-  font-size: 16px;
-}
     </style>
 <body>
     <h1>Hello, World!</h1>
 <div class="container scroll-1">
-  <div class="container">
-  <div class="card">
+  <div class="container1">
+  <div class="card1">
     <div class="face back">
       <div class="content">
         <span class="stars"></span>
@@ -114,8 +129,9 @@
       <b>Hover</b>
     </div>
   </div>
-</div><div class="container">
-  <div class="card">
+</div>
+<div class="container1">
+  <div class="card1">
     <div class="face back">
       <div class="content">
         <span class="stars"></span>
@@ -129,8 +145,9 @@
       <b>Hover</b>
     </div>
   </div>
-</div><div class="container">
-  <div class="card">
+</div>
+<div class="container1">
+  <div class="card1">
     <div class="face back">
       <div class="content">
         <span class="stars"></span>
@@ -144,6 +161,62 @@
       <b>Hover</b>
     </div>
   </div>
+</div>
+<div class="container1">
+  <div class="card1">
+    <div class="face back">
+      <div class="content">
+        <span class="stars"></span>
+        <b class="desc">Hello</b>
+        <p class="desc">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </p>
+      </div>
+    </div>
+    <div class="face front">
+      <b>Hover</b>
+    </div>
+  </div>
+</div>
+
+<div class="container1">
+  <div class="card1">
+    <div class="face back">
+      <div class="content">
+        <span class="stars"></span>
+        <b class="desc">Hello</b>
+        <p class="desc">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </p>
+      </div>
+    </div>
+    <div class="face front">
+      <b>Hover</b>
+    </div>
+  </div>
+</div>
+
+<div class="container1">
+  <div class="card1">
+    <div class="face back">
+      <div class="content">
+        <span class="stars"></span>
+        <b class="desc">Hello</b>
+        <p class="desc">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </p>
+      </div>
+    </div>
+    <div class="face front">
+      <b>Hover</b>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+
+
 </div>
 </div>
 </body>
