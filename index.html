@@ -1,224 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Hello World</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website</title>
     <style>
+        /* Reset default browser styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.container1 {
-  margin: 0 auto;
-}
-
-.card1 {
-  position: relative;
-  width: 200px;
-  height: 300px;
-  margin: 0 auto;
-  background: #000;
-  border-radius: 15px;
-  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
-}
-
-.face {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+        /* Color Scheme */
+:root {
+    --primary-color: #635985;
+    --secondary-color: #443C68;
+    --tertiary-color: #393053;
+    --background-color: #18122B;
+    --text-color: #fff;
 }
 
-.face.back {
-  box-sizing: border-box;
-  padding: 20px;
-}
 
-.face.back b {
-  margin: 0;
-  padding: 0;
-}
+        /* Styles for header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 10px;
+            text-align: center;
+        }
 
-.face.back .desc {
-  background-color: #eee;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+        /* Styles for navigation menu */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 10px;
+            text-align: center;
+        }
 
-.face.front {
-  transition: 0.5s;
-}
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
 
-.face.front b {
-  margin: 0;
-  padding: 0;
-  font-size: 5.1em;
-  color: #fff;
-  transition: 0.5s;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-}
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
 
-.card1:hover .face.front {
-  height: 60px;
-}
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
 
-.card1:hover .face.front b {
-  font-size: 2em;
-}
+        /* Styles for main content */
+        .content {
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: calc(100vh - 140px); /* Subtract header, nav, and footer height */
+        }
 
-.face.front {
-  background-color: #0cbaba;
-  border-radius: 15px;
-}
-        .scroll-1::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-.scroll-1 {
-  background-color: #212121; /* Add this line to change background color */
-}
+        /* Styles for sections */
+        section {
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: calc(100vh - 140px); /* Subtract header, nav, and footer height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-.scroll-1::-webkit-scrollbar-thumb {
-  border-radius: 20px;
-  background: #888;
-}
-
-.container * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  color: #fff;
-}
-
-.container {
-    justify-content: center; /* Center horizontally */
-  color: #212121;
-  display: flex;
-  overflow-x: scroll;
-  padding: 24px;
-    height: 100%;
-  max-width: 100%;
-  scroll-snap-type: x mandatory;
-  scroll-padding-top: 24px;
-  border-radius: 8px;
-  gap: 100px;
-margin: 10px;
-}
-body{
-
-    justify-content: center; /* Center horizontally */
-}
-
+        /* Styles for footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
+</head>
 <body>
-    <h1>Hello, World!</h1>
-<div class="container scroll-1">
-  <div class="container1">
-  <div class="card1">
-    <div class="face back">
-      <div class="content">
-        <span class="stars"></span>
-        <b class="desc">Hello</b>
-        <p class="desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-      </div>
+    <header>
+        <h1>Responsive Website</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <h2>Welcome to Our Website!</h2>
+        <p>This is a responsive website template optimized for mobile devices.</p>
     </div>
-    <div class="face front">
-      <b>Card game for iOS</b>
-    </div>
-  </div>
-</div>
-<div class="container1">
-  <div class="card1">
-    <div class="face back">
-      <div class="content">
-        <span class="stars"></span>
-        <b class="desc">Hello</b>
-        <p class="desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-      </div>
-    </div>
-    <div class="face front">
-      <b>Algo option trader</b>
-    </div>
-  </div>
-</div>
-<div class="container1">
-  <div class="card1">
-    <div class="face back">
-      <div class="content">
-        <span class="stars"></span>
-        <b class="desc">Hello</b>
-        <p class="desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-      </div>
-    </div>
-    <div class="face front">
-      <b>Hover</b>
-    </div>
-  </div>
-</div>
-<div class="container1">
-  <div class="card1">
-    <div class="face back">
-      <div class="content">
-        <span class="stars"></span>
-        <b class="desc">Hello</b>
-        <p class="desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-      </div>
-    </div>
-    <div class="face front">
-      <b>Hover</b>
-    </div>
-  </div>
-</div>
-
-<div class="container1">
-  <div class="card1">
-    <div class="face back">
-      <div class="content">
-        <span class="stars"></span>
-        <b class="desc">Hello</b>
-        <p class="desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-      </div>
-    </div>
-    <div class="face front">
-      <b>Hover</b>
-    </div>
-  </div>
-</div>
-
-<div class="container1">
-  <div class="card1">
-    <div class="face back">
-      <div class="content">
-        <span class="stars"></span>
-        <b class="desc">Hello</b>
-        <p class="desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-      </div>
-    </div>
-    <div class="face front">
-      <b>Hover</b>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-  </div>
-
-
-</div>
-</div>
+    <section>
+        <h2>Section 1</h2>
+        <p>This is the first section of the website.</p>
+    </section>
+    <section>
+        <h2>Section 2</h2>
+        <p>This is the second section of the website.</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
 </body>
 </html>
