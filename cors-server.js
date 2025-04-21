@@ -226,11 +226,14 @@ const cards = [
 
 const path = require('path'); // Import the path module
 
-app.use(express.static(path.join(__dirname)));
+
+
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/App', (req, res) => {
-  res.sendFile(path.join(__dirname, 'App.js'));
+  res.sendFile(path.join(__dirname, 'build', 'app.html'));
 });
+
 
 app.get('/Support', (req, res) => {
   res.sendFile(path.join(__dirname, 'Support.html'));
