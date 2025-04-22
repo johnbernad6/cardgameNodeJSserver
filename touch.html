@@ -72,5 +72,17 @@
     document.removeEventListener('touchend', onTouchEnd);
   }
 </script>
+  
+<script>
+    fetch('/Selectall')
+      .then(response => response.json())
+      console.log('Grocery List Items:', data);
+        // You can also display the data on the page if needed
+      })
+      .catch(error => {
+        console.error('Error fetching grocery list items:', error);
+      });
+  </script>
+
 </body>
 </html>
