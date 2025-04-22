@@ -234,6 +234,24 @@ app.use(express.static(path.join(__dirname)));
    res.sendFile(path.join(__dirname, 'App.js'));
  });
 
+app.get('/Selectall', async (req, res) => {
+  try {
+    const groceryListItems = await getAllGroceryListItems();
+    res.sendFile(path.join(__dirname, 'touch.html'), (err) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        // You can send the retrieved items as part of the response if needed
+        console.log('Retrieved Grocery List Items:', groceryListItems);
+      }
+    });
+  } catch (error) {
+    console.error('Error retrieving grocery list items:', error);
+    res.status(500).send('Error retrieving grocery list items');
+  }
+});
+
+
 app.get('/Support', (req, res) => {
   res.sendFile(path.join(__dirname, 'Support.html'));
 });
