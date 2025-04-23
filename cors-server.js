@@ -226,7 +226,12 @@ const cards = [
 
 const path = require('path'); // Import the path module
 
+app.use(express.static(path.join(__dirname, 'ReactMenu', 'public')));
 
+// Serve index.html on root
+app.get('/Menu', (req, res) => {
+  res.sendFile(path.join(__dirname, 'ReactMenu', 'public', 'index.html'));
+});
 
 app.use(express.static(path.join(__dirname)));
  
