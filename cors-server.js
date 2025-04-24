@@ -237,7 +237,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/Menu', (req, res) => {
-  res.sendFile(path.join(__dirname, 'reactmenu', 'index.html'));
+  res.sendFile(path.join(__dirname, 'reactmenu', 'dist',  'index.html'));
 });
 
 
