@@ -226,7 +226,7 @@ const cards = [
 
 const path = require('path'); // Import the path module
 
-app.use('/ReactMenu/src', express.static(path.join(__dirname, 'ReactMenu', 'src')));
+app.use('/reactmenu', express.static(path.join(__dirname, 'reactmenu')));
 
 
 app.get('/', (req, res) => {
@@ -235,7 +235,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/Menu', (req, res) => {
-  res.sendFile(path.join(__dirname, 'ReactMenu', 'src', 'index.html'));
+  res.sendFile(path.join(__dirname, 'reactmenu', 'index.html'));
 });
 
 
