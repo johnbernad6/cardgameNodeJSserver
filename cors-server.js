@@ -228,6 +228,8 @@ const path = require('path'); // Import the path module
 
 app.use('/reactmenu', express.static(path.join(__dirname, 'reactmenu')));
 
+app.use('/src', express.static(path.join(__dirname, 'reactmenu' , 'src')));
+
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
