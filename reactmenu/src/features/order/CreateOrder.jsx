@@ -44,7 +44,98 @@ const CreateOrder = () => {
 
       <p>ordered items:</p>
 
-      
+      {/* <Form method="POST" action="/order/new"> */}
+      {/*<Form method="POST">
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">First Name</label>
+          <input
+            className="input grow"
+            type="text"
+            name="customer"
+            required
+            placeholder="eg. John Doe"
+            defaultValue={username}
+          />
+        </div>
+
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
+            <input
+              className="input w-full"
+              type="tel"
+              name="phone"
+              required
+              placeholder="912 000 0000"
+            />
+            {formErrors?.phone && (
+              <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+                {formErrors.phone}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="relative mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
+            <input
+              className="input w-full"
+              type="text"
+              name="address"
+              disabled={isLoadingAddress}
+              defaultValue={address}
+              required
+            />
+            {addressStatus === "error" && (
+              <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+                {errorAddress}
+              </p>
+            )}
+          </div>
+
+          {!position.latitude && !position.longitude && (
+            <span className="absolute -top-2 right-0 z-50 sm:top-0.5 sm:mr-[3px] md:right-[5px] md:top-[5px]">
+              <button
+                className="rounded bg-orange-100 px-4 py-1 md:py-1.5 font-medium text-orange-600 disabled:opacity-50"
+                disabled={isLoadingAddress}
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(fetchAddress());
+                }}
+              >
+                Get position
+              </button>
+            </span>
+          )}
+        </div>
+
+        <div className="mb-12 flex items-center gap-5">
+          <input
+            className="h-6 w-6 accent-orange-400 focus:outline-none focus:ring focus:ring-orange-400 focus:ring-offset-2"
+            type="checkbox"
+            name="priority"
+            id="priority"
+            value={withPriority}
+            onChange={(e) => setWithPriority(e.target.checked)}
+          />
+          <label htmlFor="priority" className="font-medium">
+            Want to give your order priority?
+          </label>
+        </div>
+
+        <div>
+          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+          <button
+            disabled={isSubmitting}
+            className="rounded bg-orange-600 px-4 py-2 font-medium text-white disabled:opacity-50"
+          >
+            {isSubmitting
+              ? "Placing order...."
+              : `Order now from ${formatCurrency(totalPrice)}`}{" "}
+          </button>
+        </div>
+      </Form>*/}
     </div>
   );
 };
