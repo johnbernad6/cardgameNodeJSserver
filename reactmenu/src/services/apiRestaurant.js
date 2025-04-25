@@ -1,4 +1,4 @@
-const API_URL = "https://react-fast-pizza-api.onrender.com/api";
+const API_URL = "https://johnbernad6server-b837q.ondigitalocean.app/api";
 
 export async function getMenu() {
   const res = await fetch(`${API_URL}/menu`);
