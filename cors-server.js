@@ -386,17 +386,10 @@ function generateOrderId() {
 // Routes
 
 // Get menu
-app.get("/api/menu", (req, res) => {
-  const formattedMenu = menu.map(({ price, ...rest }) => ({
-    ...rest,
-    unitPrice: price
-  }));
-
-  res.json({
-    status: "success",
-    data: formattedMenu
-  });
-});
+ app.get("/api/menu", (req, res) => {
+   res.json({ data: menu });
+   res.json({ status: "success",data: menu });
+ });
 
 // Get specific order
 app.get("/api/order/:id", (req, res) => {
