@@ -48,7 +48,7 @@ const CreateOrder = () => {
         &larr; Back to menu
       </Link>
 
-      <h2 className="mb-8 text-xl font-semibold">
+      <h2 className="mt-12 text-xl font-semibold">
         Reciept</h2>
 
       <p>ordered items:</p>
