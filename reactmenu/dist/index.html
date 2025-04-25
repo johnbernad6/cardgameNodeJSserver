@@ -3,19 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <script>
-  const isProd = location.pathname.includes('reactmenu/dist'); // or use hostname
-  const basePath = isProd ? 'reactmenu/dist/assets/' : '/assets/';
+  // Check if we're running on the production domain
+  const isProd = location.hostname === 'johnbernad6server-b837q.ondigitalocean.app';
 
+  // Set base path accordingly
+  const basePath = isProd ? '/reactmenu/dist/assets/' : '/assets/';
+
+  // Dynamically load JS
   const script = document.createElement('script');
   script.type = 'module';
-  script.crossOrigin = true;
-  script.src = `${basePath}index-CO-h8dFI.js`;
+  script.crossOrigin = 'anonymous';
+  script.src = basePath + 'index-CO-h8dFI.js';
   document.head.appendChild(script);
 
+  // Dynamically load CSS
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.crossOrigin = true;
-  link.href = `${basePath}index-osJg8gcf.css`;
+  link.crossOrigin = 'anonymous';
+  link.href = basePath + 'index-osJg8gcf.css';
   document.head.appendChild(link);
 </script>
     <link rel="icon" type="image/png" href="/favicon.png" />
