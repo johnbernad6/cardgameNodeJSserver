@@ -387,7 +387,6 @@ function generateOrderId() {
 
 // Get menu
  app.get("/api/menu", (req, res) => {
-   res.json({ data: menu });
    res.json({ status: "success",data: menu });
  });
 
