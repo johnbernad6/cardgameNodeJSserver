@@ -2,7 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <base href="/reactmenu/dist/">
+    <script>
+  const isProd = location.pathname.includes('reactmenu/dist'); // or use hostname
+  const basePath = isProd ? 'reactmenu/dist/assets/' : '/assets/';
+
+  const script = document.createElement('script');
+  script.type = 'module';
+  script.crossOrigin = true;
+  script.src = `${basePath}index-CO-h8dFI.js`;
+  document.head.appendChild(script);
+
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.crossOrigin = true;
+  link.href = `${basePath}index-osJg8gcf.css`;
+  document.head.appendChild(link);
+</script>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Waiterless Restaurant</title>
