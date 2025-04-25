@@ -29,12 +29,15 @@ const Cart = () => {
       </ul>
 
       <div className="mt-6 space-x-2">
-        <Link
-          to="/order/new"
-          className="rounded bg-orange-600 px-4 py-2 font-medium text-white"
-        >
-          Order pizzas
-        </Link>
+        <button
+  onClick={() => {
+    dispatch(clearCart());
+    navigate("/order/new");
+  }}
+  className="rounded bg-orange-600 px-4 py-2 font-medium text-white"
+>
+  Order pizzas
+</button>
 
         <button
           className="rounded bg-slate-100 px-4 py-2 font-medium text-slate-600"
