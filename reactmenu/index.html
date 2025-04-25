@@ -2,27 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script>
-  // Check if we're running on the production domain
+  <script>
   const isProd = location.hostname === 'johnbernad6server-b837q.ondigitalocean.app';
+  const basePath = isProd ? '/reactmenu/dist/' : '/';
 
-  // Set base path accordingly
-  const basePath = isProd ? '/reactmenu/dist/assets/' : '/assets/';
+  fetch(basePath + 'asset-manifest.json')
+    .then(response => response.json())
+    .then(manifest => {
+      const jsPath = basePath + manifest['files']['main.js'];
+      const cssPath = basePath + manifest['files']['main.css'];
 
-  // Dynamically load JS
-  const script = document.createElement('script');
-  script.type = 'module';
-  script.crossOrigin = 'anonymous';
-  script.src = basePath + 'index-CO-h8dFI.js';
-  document.head.appendChild(script);
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.crossOrigin = 'anonymous';
+      script.src = jsPath;
+      document.head.appendChild(script);
 
-  // Dynamically load CSS
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.crossOrigin = 'anonymous';
-  link.href = basePath + 'index-osJg8gcf.css';
-  document.head.appendChild(link);
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.crossOrigin = 'anonymous';
+      link.href = cssPath;
+      document.head.appendChild(link);
+    })
+    .catch(err => {
+      console.error('Failed to load assets:', err);
+    });
 </script>
+
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Waiterless Restaurant</title>
