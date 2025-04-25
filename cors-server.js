@@ -229,7 +229,7 @@ let menu = [
   {
     id: 1,
     name: "Margherita",
-    price: 12,
+    unitPrice: 12,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg",
     ingredients: ["tomato", "mozzarella", "basil"],
     soldOut: false,
@@ -237,7 +237,7 @@ let menu = [
   {
     id: 2,
     name: "Capricciosa",
-    price: 14,
+    unitPrice: 14,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-2.jpg",
     ingredients: ["tomato", "mozzarella", "ham", "mushrooms", "artichoke"],
     soldOut: true,
@@ -245,7 +245,7 @@ let menu = [
   {
     id: 3,
     name: "Romana",
-    price: 15,
+    unitPrice: 15,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-3.jpg",
     ingredients: ["tomato", "mozzarella", "prosciutto"],
     soldOut: false,
@@ -253,7 +253,7 @@ let menu = [
   {
     id: 4,
     name: "Prosciutto e Rucola",
-    price: 16,
+    unitPrice: 16,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-4.jpg",
     ingredients: ["tomato", "mozzarella", "prosciutto", "arugula"],
     soldOut: false,
@@ -261,7 +261,7 @@ let menu = [
   {
     id: 5,
     name: "Diavola",
-    price: 16,
+    unitPrice: 16,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-5.jpg",
     ingredients: ["tomato", "mozzarella", "spicy salami", "chili flakes"],
     soldOut: false,
@@ -269,7 +269,7 @@ let menu = [
   {
     id: 6,
     name: "Vegetale",
-    price: 13,
+    unitPrice: 13,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-6.jpg",
     ingredients: ["tomato", "mozzarella", "bell peppers", "onions", "mushrooms"],
     soldOut: false,
@@ -277,7 +277,7 @@ let menu = [
   {
     id: 7,
     name: "Napoli",
-    price: 16,
+    unitPrice: 16,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-7.jpg",
     ingredients: ["tomato", "mozzarella", "fresh tomato", "basil"],
     soldOut: false,
@@ -285,7 +285,7 @@ let menu = [
   {
     id: 8,
     name: "Siciliana",
-    price: 16,
+    unitPrice: 16,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-8.jpg",
     ingredients: ["tomato", "mozzarella", "anchovies", "olives", "capers"],
     soldOut: true,
@@ -293,7 +293,7 @@ let menu = [
   {
     id: 9,
     name: "Pepperoni",
-    price: 14,
+    unitPrice: 14,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-9.jpg",
     ingredients: ["tomato", "mozzarella", "pepperoni"],
     soldOut: false,
@@ -301,7 +301,7 @@ let menu = [
   {
     id: 10,
     name: "Hawaiian",
-    price: 15,
+    unitPrice: 15,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-10.jpg",
     ingredients: ["tomato", "mozzarella", "pineapple", "ham"],
     soldOut: false,
@@ -309,7 +309,7 @@ let menu = [
   {
     id: 11,
     name: "Spinach and Mushroom",
-    price: 15,
+    unitPrice: 15,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-11.jpg",
     ingredients: ["tomato", "mozzarella", "spinach", "mushrooms"],
     soldOut: false,
@@ -317,7 +317,7 @@ let menu = [
   {
     id: 12,
     name: "Mediterranean",
-    price: 16,
+    unitPrice: 16,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-12.jpg",
     ingredients: ["tomato", "mozzarella", "sun-dried tomatoes", "olives", "artichoke"],
     soldOut: false,
@@ -325,7 +325,7 @@ let menu = [
   {
     id: 13,
     name: "Greek",
-    price: 16,
+    unitPrice: 16,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-13.jpg",
     ingredients: ["tomato", "mozzarella", "spinach", "feta", "olives", "pepperoncini"],
     soldOut: true,
@@ -333,7 +333,7 @@ let menu = [
   {
     id: 14,
     name: "Abruzzese",
-    price: 16,
+    unitPrice: 16,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-14.jpg",
     ingredients: ["tomato", "mozzarella", "prosciutto", "arugula"],
     soldOut: false,
@@ -341,7 +341,7 @@ let menu = [
   {
     id: 15,
     name: "Pesto Chicken",
-    price: 16,
+    unitPrice: 16,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-15.jpg",
     ingredients: ["pesto", "mozzarella", "chicken", "sun-dried tomatoes", "spinach"],
     soldOut: false,
@@ -349,7 +349,7 @@ let menu = [
   {
     id: 16,
     name: "Eggplant Parmesan",
-    price: 15,
+    unitPrice: 15,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-16.jpg",
     ingredients: ["marinara", "mozzarella", "eggplant", "parmesan"],
     soldOut: false,
@@ -357,7 +357,7 @@ let menu = [
   {
     id: 17,
     name: "Roasted Veggie",
-    price: 15,
+    unitPrice: 15,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-17.jpg",
     ingredients: ["marinara", "mozzarella", "zucchini", "eggplant", "peppers", "onions"],
     soldOut: false,
@@ -365,7 +365,7 @@ let menu = [
   {
     id: 18,
     name: "Tofu and Mushroom",
-    price: 15,
+    unitPrice: 15,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-18.jpg",
     ingredients: ["marinara", "mozzarella", "tofu", "mushrooms", "bell peppers"],
     soldOut: false,
