@@ -224,6 +224,59 @@ const cards = [
 
 ];
 
+let orders = {};
+let menu = [
+  { id: 1, name: "Margherita", price: 8.99 },
+  { id: 2, name: "Pepperoni", price: 10.99 },
+  { id: 3, name: "BBQ Chicken", price: 12.99 },
+];
+
+// Utility: Generate 16-character alphanumeric order ID
+function generateOrderId() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < 16; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+// Routes
+
+// Get menu
+app.get("/api/menu", (req, res) => {
+  res.json({ data: menu });
+});
+
+// Get specific order
+app.get("/api/order/:id", (req, res) => {
+  const order = orders[req.params.id];
+  if (!order) {
+    return res.status(404).json({ error: `Order #${req.params.id} not found` });
+  }
+  res.json({ data: order });
+});
+
+// Create new order
+app.post("/api/order", (req, res) => {
+  const newOrder = req.body;
+  const id = generateOrderId();
+  const orderWithId = { id, ...newOrder };
+  orders[id] = orderWithId;
+  res.status(201).json({ data: orderWithId });
+});
+
+// Update existing order
+app.patch("/api/order/:id", (req, res) => {
+  const id = req.params.id;
+  if (!orders[id]) {
+    return res.status(404).json({ error: "Order not found" });
+  }
+  orders[id] = { ...orders[id], ...req.body };
+  res.json({ data: orders[id] });
+});
+
+
 const path = require('path'); // Import the path module
 
 app.use('/reactmenu', express.static(path.join(__dirname, 'reactmenu')));
