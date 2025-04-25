@@ -387,7 +387,15 @@ function generateOrderId() {
 
 // Get menu
 app.get("/api/menu", (req, res) => {
-  res.json({ status: "success",data: menu });
+  const formattedMenu = menu.map(({ price, ...rest }) => ({
+    ...rest,
+    unitPrice: price
+  }));
+
+  res.json({
+    status: "success",
+    data: formattedMenu
+  });
 });
 
 // Get specific order
