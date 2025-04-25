@@ -40,8 +40,7 @@ const CreateOrder = () => {
   return (
     <div className="px-4 py-6">
       <h2 className="mb-8 text-xl font-semibold">
-        Order placed!
-      </h2>
+        Reciept</h2>
 
       <p>ordered items:</p>
 
