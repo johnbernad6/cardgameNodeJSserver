@@ -21,12 +21,8 @@ const Header = () => {
       </div>
       <div className="flex w-16 items-center justify-end gap-2 sm:w-1/4">
         <CartOverview />
-     <Link to="/order" className="flex w-16 items-center gap-2 sm:w-1/4">
+     <Link to="/order/:orderId" className="flex w-16 items-center gap-2 sm:w-1/4">
         <LuScrollText className="h-8 w-8 text-orange-600" />
-        <div className="hidden sm:block">
-          <h1 className="-mb-1 text-2xl font-bold">React-Restaurant</h1>
-          <Username />
-        </div>
       </Link>
       </div>
     </header>
