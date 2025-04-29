@@ -145,22 +145,44 @@ async function removeShoppingItem(id) {
   }
 }
 
-addShoppingItem('Milk', 2)
-  .then(() => {
-    console.log('Item added successfully.');
-    // You can perform additional actions here after adding the item.
-getAllGroceryListItems().catch((error) => console.error('Error:', error));
+// addShoppingItem('Milk', 2)
+//   .then(() => {
+//     console.log('Item added successfully.');
+//     // You can perform additional actions here after adding the item.
+// getAllGroceryListItems().catch((error) => console.error('Error:', error));
   
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+//   })
+//   .catch((error) => {
+//     console.error('Error:', error);
+//   });
 
 
 
 // listTables().catch((error) => console.error('Error:', error));
 
+async function getMenu() {
+  const client = await pool.connect();
+  try {
+    // Query to fetch all rows from the "grocerylist" table
+    const queryResult = await client.query('SELECT * FROM menu;');
 
+    // Extract the rows from the query result
+    const menuItems = queryResult.rows;
+
+    // Print or process the retrieved rows as needed
+    console.log('All menu items retrieved!');
+    // menuItems.forEach((item) => {
+    //   console.log(item);
+    // });
+
+    // Return the retrieved rows if you need to use them elsewhere in your code
+    return menuItems;
+  } finally {
+    client.release();
+  }
+}
+
+getMenu();
 
 getPostgresVersion();
 
@@ -224,11 +246,25 @@ const cards = [
 
 ];
 
+
+
+
 let orders = {};
-let menu = [
+app.get('/api/menu', async (req, res) => {
+  try {
+    const menuItems = await getMenu();
+    res.json({ status: "success",data: menuItems });
+  } catch (error) {
+    console.error('Error retrieving menu', error);
+    res.status(500).send('Error retrieving menu items');
+  }
+});
+
+
+let oldmenu = [
   {
     id: 1,
-    name: "Margherita",
+    name: "Margherita :P",
     unitPrice: 12,
     imageUrl: "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg",
     ingredients: ["tomato", "mozzarella", "basil"],
@@ -386,9 +422,9 @@ function generateOrderId() {
 // Routes
 
 // Get menu
- app.get("/api/menu", (req, res) => {
-   res.json({ status: "success",data: menu });
- });
+ // app.get("/api/menu", (req, res) => {
+ //   res.json({ status: "success",data: menu });
+ // });
 
 // Get specific order
 app.get("/api/order/:id", (req, res) => {
