@@ -6,7 +6,7 @@ import UpdateItemQuantity from "../cart/UpdateItemQuantity.jsx";
 export const MenuItem = ({ pizza }) => {
   const dispatch = useDispatch();
 
-  const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const { id, name, unitprice, ingredients, soldout, imageurl } = pizza;
 
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   const isInCart = currentQuantity > 0;
@@ -16,8 +16,8 @@ export const MenuItem = ({ pizza }) => {
       pizzaId: id,
       name,
       quantity: 1,
-      unitPrice,
-      totalPrice: unitPrice * 1,
+      unitprice,
+      totalPrice: unitprice * 1,
     };
     dispatch(addItem(newItem));
   };
@@ -25,17 +25,17 @@ export const MenuItem = ({ pizza }) => {
   return (
     <div className="rounded-lg bg-white p-2 text-center shadow transition-all hover:shadow-lg">
       <img
-        src={imageUrl}
+        src={imageurl}
         alt={name}
         className="mx-auto mb-2 w-24 rounded-full"
       />
       <div className="mb-2">
         <h3 className="font-medium">{name}</h3>
 
-        {soldOut ? (
+        {soldout ? (
           <p className="text-gray-400">Sold Out!</p>
         ) : (
-          <p className="text-orange-600">{formatCurrency(unitPrice)}</p>
+          <p className="text-orange-600">{formatCurrency(unitprice)}</p>
         )}
 
         <p className="line-clamp-1 text-sm opacity-50">
@@ -47,7 +47,7 @@ export const MenuItem = ({ pizza }) => {
         <UpdateItemQuantity pizzaId={id} quantity={currentQuantity} />
       )}
 
-      {!soldOut && !isInCart && (
+      {!soldout && !isInCart && (
         <button
           className="mt-2 w-full rounded bg-gray-50 py-1 text-gray-600 transition-all hover:bg-gray-100"
           onClick={addToCart}
