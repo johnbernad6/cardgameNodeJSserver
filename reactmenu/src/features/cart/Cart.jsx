@@ -57,6 +57,10 @@ const Cart = () => {
 };
 
 export async function action({ request }) {
+
+  console.log("Cart value:", cart);
+console.log("Stringified cart:", JSON.stringify(cart));
+
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 

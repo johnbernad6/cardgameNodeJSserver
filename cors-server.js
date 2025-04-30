@@ -20,6 +20,9 @@ require('dotenv').config();
 
 DATABASE_URL = "postgres://fernsberns:OBEXcKvl7kJ8@ep-crimson-frog-75586577-pooler.us-east-2.aws.neon.tech/neondb";
 
+app.use(express.urlencoded({ extended: true }));
+
+
 const pool = new Pool({
   connectionString: DATABASE_URL,
   ssl: {
