@@ -283,19 +283,25 @@ app.get('/api/menu', async (req, res) => {
 
 
 app.post("/order/new", (req, res) => {
-  // Parse the cart data from the body (sent as JSON)
-  const cart = JSON.parse(req.body.cart); // assuming cart is sent as a stringified JSON
-  console.log('Received cart:', cart);
-  addOrder(cart)
-    .then(() => {
-      res.status(201).json({ message: 'Order placed successfully' });
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ message: 'Error placing order' });
-    });
-});
+  console.log("POST /order/new hit");
+  console.log("Body:", req.body); // this should include `cart`
 
+  try {
+    const cart = JSON.parse(req.body.cart);
+    console.log("Parsed cart:", cart);
+    addOrder(cart)
+      .then(() => {
+        res.status(201).json({ message: 'Order placed successfully' });
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).json({ message: 'Error placing order' });
+      });
+  } catch (err) {
+    console.error("Failed to parse cart:", err);
+    res.status(400).json({ message: 'Invalid cart data' });
+  }
+});
 let oldmenu = [
   {
     id: 1,

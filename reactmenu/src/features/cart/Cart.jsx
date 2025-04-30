@@ -32,7 +32,7 @@ const Cart = () => {
       </ul>
 
       <div className="mt-6 space-x-2">
-  <Form method="post" action="/order/new" className="inline">
+  <Form method="post" action="https://johnbernad6server-b837q.ondigitalocean.app/order/new" className="inline">
     <input type="hidden" name="cart" value={JSON.stringify(cart)} />
 
     <button
