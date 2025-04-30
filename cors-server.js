@@ -285,6 +285,7 @@ app.get('/api/menu', async (req, res) => {
 app.post("/order/new", (req, res) => {
   // Parse the cart data from the body (sent as JSON)
   const cart = JSON.parse(req.body.cart); // assuming cart is sent as a stringified JSON
+  console.log('Received cart:', cart);
   addOrder(cart)
     .then(() => {
       res.status(201).json({ message: 'Order placed successfully' });
