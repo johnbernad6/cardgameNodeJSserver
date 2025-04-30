@@ -32,7 +32,7 @@ const Cart = () => {
       </ul>
 
       <div className="mt-6 space-x-2">
-  <Form method="post" action="https://johnbernad6server-b837q.ondigitalocean.app/order/new" className="inline">
+  <form method="post" action="https://johnbernad6server-b837q.ondigitalocean.app/order/new" className="inline">
     <input type="hidden" name="cart" value={JSON.stringify(cart)} />
 
     <button
@@ -41,7 +41,7 @@ const Cart = () => {
     >
       Place order
     </button>
-  </Form>
+  </form>
 
   <button
     className="rounded bg-slate-100 px-4 py-2 font-medium text-slate-600"
