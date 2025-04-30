@@ -202,7 +202,7 @@ async function addOrder(item, quantity) {
 }
 
 
-addOrder(1, 3).then(console.log).catch(console.error);
+// addOrder(1, 3).then(console.log).catch(console.error);
 getMenu();
 
 getPostgresVersion();
@@ -281,6 +281,19 @@ app.get('/api/menu', async (req, res) => {
   }
 });
 
+
+app.post("/order/new", (req, res) => {
+  // Parse the cart data from the body (sent as JSON)
+  const cart = JSON.parse(req.body.cart); // assuming cart is sent as a stringified JSON
+  addOrder(cart)
+    .then(() => {
+      res.status(201).json({ message: 'Order placed successfully' });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ message: 'Error placing order' });
+    });
+});
 
 let oldmenu = [
   {
