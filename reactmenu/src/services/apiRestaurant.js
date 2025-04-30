@@ -17,23 +17,26 @@ export async function getOrder(id) {
   return data;
 }
 
-export async function createOrder(newOrder) {
+export async function createOrder(order) {
   try {
-    const res = await fetch(`${API_URL}/order`, {
+    const res = await fetch(`${API_URL}/order/new`, {
       method: "POST",
-      body: JSON.stringify(newOrder),
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ cart: order.cart }),
     });
 
-    if (!res.ok) throw Error();
+    if (!res.ok) throw new Error("Failed to create order");
+
     const { data } = await res.json();
     return data;
-  } catch {
-    throw Error("Failed creating your order");
+  } catch (err) {
+    console.error("Error in createOrder:", err);
+    throw new Error("Failed creating your order");
   }
 }
+
 
 export async function updateOrder(id, updateObj) {
   try {

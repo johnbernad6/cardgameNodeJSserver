@@ -27,6 +27,7 @@ function App() {
         {
           path: "/cart",
           element: <Cart />,
+          action: cartAction,
         },
         {
           path: "/order/new",
