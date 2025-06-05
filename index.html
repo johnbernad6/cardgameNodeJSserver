@@ -1,483 +1,312 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <style>
-        /* Reset default browser styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Color Scheme */
-:root {
-    --primary-color: #494949 ;
-    --secondary-color: #b9b9b9;
-    --tertiary-color: #f0f0f0;
-    --background-color: #ffffff;
-    --text-color: #ffffff;
-}
-
-
-li{
-
-   color:white; font-weight: bold; text-decoration: none;
-}
-
-
-
-        /* Styles for header */
-        header {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            padding: 10px;
-            text-align: left;
-
-        }
-
-        /* Styles for navigation menu */
-        nav {
-            background-color: var(--secondary-color);
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
-
-        nav ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-        }
-	            footer ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        footer ul li {
-            display: inline;
-            margin-right: 10px;
-        }
-
-        footer ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        .contact-info { margin: 5px; position: relative; font-weight: bold; } .contact-info p { color: white; text-decoration: none; } .contact-info p a { color: white; text-decoration: none; }
-
-        /* Styles for main content */
-        .content {
-            padding: 20px;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            min-height: calc(100vh - 140px); /* Subtract header, nav, and footer height */
-        }
-
-        /* Styles for sections */
-        section {
-            padding: 20px;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            min-height: calc(100vh - 140px); /* Subtract header, nav, and footer height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Styles for footer */
-        footer {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-/* card */
- .card {
-  width: 190px;
-  height: 254px;
-  background: #07182E;
-  position: relative;
-  display: flex;
-  place-content: center;
-  place-items: center;
-  overflow: hidden;
-  border-radius: 20px;
-}
-
-.card h2 {
-  z-index: 1;
-  color: white;
-  font-size: 2em;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  width: 100px;
-  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
-  height: 130%;
-  animation: rotBGimg 3s linear infinite;
-  transition: all 0.2s linear;
-}
-
-@keyframes rotBGimg {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.card::after {
-  content: '';
-  position: absolute;
-  background: #07182E;
-  ;
-  inset: 5px;
-  border-radius: 15px;
-}  
-/* .card:hover:before {
-  background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
-  animation: rotBGimg 3.5s linear infinite;
-} */
-
-/* wave card */
-.e-card {
-  margin: 0 auto;
-  background-color: #110a1f;
-  
-  box-shadow: 0px 8px 28px -9px rgba(0,0,0,0.45);
-  position: relative;
-  width: 100%;
-  height: 160vh;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.wave {
-  
-  position: absolute;
-  width: 180vw ;
-  height: 200vw;
-  opacity: 0.1;
-  left: 0;
-  bottom: -50%; /* Adjusted to stick out halfway from the bottom */
-  margin-left: -50%;
-  margin-bottom: 200%; /* Adjusted to center the wave */
-  background: linear-gradient(744deg,#af40ff,#5b42f3 60%,#00ddeb);
-}
-
-.icon {
-  width: 3em;
-  margin-top: -1em;
-  padding-bottom: 1em;
-}
-
-.infotop {
-  text-align: center;
-  font-size: 20px;
-  position: absolute;
-  top: 5.6em;
-  left: 0;
-  right: 0;
-  color: rgb(255, 255, 255);
-  font-weight: 600;
-}
-
-.name {
-  font-size: 14px;
-  font-weight: 100;
-  position: relative;
-  top: 1em;
-  text-transform: lowercase;
-}
-
-.wave:nth-child(2),
-.wave:nth-child(3) {
-  top: 210px;
-}
-
-.playing .wave {
-  border-radius: 40%;
-  animation: wave 3000ms infinite linear;
-}
-
-.wave {
-  border-radius: 40%;
-  animation: wave 55s infinite linear;
-}
-
-.playing .wave:nth-child(2) {
-  animation-duration: 4000ms;
-}
-
-.wave:nth-child(2) {
-  animation-duration: 50s;
-}
-
-.playing .wave:nth-child(3) {
-  animation-duration: 5000ms;
-}
-
-.wave:nth-child(3) {
-  animation-duration: 45s;
-}
-
-@keyframes wave {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* space button*/
-
-.btn {
-  opacity: 0.75;
-  margin: 0 auto;
-  margin-top: 5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20rem;
-  overflow: hidden;
-  height: 7rem;
-  background-size: 300% 300%;
-  backdrop-filter: blur(1rem);
-  border-radius: 5rem;
-  transition: 0.5s;
-  animation: gradient_301 5s ease infinite;
-  /* border: double 4px transparent; */
-  background-image: linear-gradient(#212121, #212121),  linear-gradient(137.48deg, #ffdb3b 10%,#FE53BB 45%, #8F51EA 67%, #0044ff 87%);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-
-}
-
-#container-stars {
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  transition: 0.5s;
-  backdrop-filter: blur(1rem);
-  border-radius: 5rem;
-}
-
-strong {
-  z-index: 2;
-  font-family: 'Avalors Personal Use';
-  font-size: 12px;
-  letter-spacing: 5px;
-  color: #FFFFFF;
-  text-shadow: 0 0 4px white;
-}
-
-#glow {
-  position: absolute;
-  display: flex;
-  width: 12rem;
-}
-
-.circle {
-  width: 100%;
-  height: 30px;
-  filter: blur(2rem);
-  animation: pulse_3011 4s infinite;
-  z-index: -1;
-}
-
-.circle:nth-of-type(1) {
-  background: rgba(254, 83, 186, 0.636);
-}
-
-.circle:nth-of-type(2) {
-  background: rgba(142, 81, 234, 0.704);
-}
-
-.btn:hover #container-stars {
-  z-index: 1;
-  background-color: #212121;
-}
-
-.btn:hover {
-  transform: scale(1.1)
-}
-
-.btn:active {
-  border: double 4px #FE53BB;
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  animation: none;
-}
-
-.btn:active .circle {
-  background: #FE53BB;
-}
-
-#stars {
-  position: relative;
-  background: transparent;
-  width: 200rem;
-  height: 200rem;
-}
-
-#stars::after {
-  content: "";
-  position: absolute;
-  top: -10rem;
-  left: -100rem;
-  width: 100%;
-  height: 100%;
-  animation: animStarRotate 90s linear infinite;
-}
-
-#stars::after {
-  background-image: radial-gradient(#ffffff 1px, transparent 1%);
-  background-size: 50px 50px;
-}
-
-#stars::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -50%;
-  width: 170%;
-  height: 500%;
-  animation: animStar 60s linear infinite;
-}
-
-#stars::before {
-  background-image: radial-gradient(#ffffff 1px, transparent 1%);
-  background-size: 50px 50px;
-  opacity: 0.5;
-}
-
-@keyframes animStar {
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(-135rem);
-  }
-}
-
-@keyframes animStarRotate {
-  from {
-    transform: rotate(360deg);
-  }
-
-  to {
-    transform: rotate(0);
-  }
-}
-
-@keyframes gradient_301 {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes pulse_3011 {
-  0% {
-    transform: scale(0.75);
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
-  }
-
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-  }
-
-  100% {
-    transform: scale(0.75);
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-}
-
-    </style>
-</head>
-<body>
+<!--Shree Ganeshay Namha -->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>John Bernad</title>
+    <meta name="title" content="John Bernad" />
+    <meta
+      name="description"
+      content="Developer • Otaku • Learner Although A Data engineer looking forward to Share and Gain knowledgeable stuff"
+    />
+    <meta
+      name="keywords"
+      content="John Bernad
+    />
+    <meta name="author" content="John Bernad" />
+    <meta name="language" content="English" />
+    <meta name="copyright" content="John Bernad © 2023 " />
+    <meta name="robots" content="index, follow" />
+    <link rel="shortcut icon" href="favicon.ico" />
     
-    <div class="content">
-
-<!-- <div class="card">
-    <h2>CARD</h2>
-</div>
- -->
-<div class="e-card playing">
-  <div id="container-stars">
-    <div id="stars"></div>
-  </div>
-  <!-- <header>
-        
-    </header>
-    <nav>
-       
-    </nav> -->
-
-  <div class="image">
-
-
-<!--   
-  <div class="wave"></div>
-  <div class="wave"></div> -->
-
-
-<div>
-
-  <!-- <img src="https://raw.githubusercontent.com/johnbernad6/cardgameNodeJSserver/main/IMG_2151.png" alt="Description of the image"> -->
+    <!-- Link to the sitemap -->
+    <link rel="sitemap" type="application/xml" href="sitemap.php">
     
-  </div>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://avatars2.githubusercontent.com/u/26687933?v=4&s=196"
+      sizes="196x196"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://avatars2.githubusercontent.com/u/26687933?v=4&s=96"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://avatars2.githubusercontent.com/u/26687933?v=4&s=32"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://avatars2.githubusercontent.com/u/26687933?v=4&s=16"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://avatars2.githubusercontent.com/u/26687933?v=4&s=128"
+      sizes="128x128"
+    />
+    <meta name="application-name" content="John Bernad&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta
+      name="msapplication-TileImage"
+      content="https://avatars2.githubusercontent.com/u/26687933?v=4&s=144"
+    />
+    <meta
+      name="msapplication-square70x70logo"
+      content="https://avatars2.githubusercontent.com/u/26687933?v=4&s=70"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="https://avatars2.githubusercontent.com/u/26687933?v=4&s=150"
+    />
+    <meta
+      name="msapplication-square310x310logo"
+      content="https://avatars2.githubusercontent.com/u/26687933?v=4&s=310"
+    />
+    <meta property="og:title" content="John Bernad" />
+    <meta property="og:site_name" content="John Bernad" />
+    <meta property="og:url" content="https://ptprashanttripathi.github.io" />
+    <meta
+      property="og:description"
+      content="Developer • Otaku • Learner Although A Data engineer looking forward to Share and Gain knowledgeable stuff"
+    />
+    <meta property="og:type" content="profile" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C4NJD8J3MD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-<img src="https://raw.githubusercontent.com/johnbernad6/cardgameNodeJSserver/main/IMG_2157.png" alt="Description of the image" style="width: 25%; ">
+  gtag('config', 'G-C4NJD8J3MD');
+</script>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="bg-struct bg-img"></div>
+      <div class="mdl-js-layout mdl-layout--fixed-header">
 
-
-<div class="btn" type="button" style="mix-blend-mode: darken;">
-  <h3>JOHN BERNAD</h3>
-	
-  <div id="container-stars">
-    <div id="stars"></div>
-  </div>
-
-  <div id="glow">
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
-</div>
-	<p style="opacity: 0.75; margin: 20px; color: white; position: relative; ">Hey there! 👋
+        <div class="mdl-layout__drawer">
+          <div class="nicescroll-bar">
+            <div class="drawer-profile-wrap">
+              <div class="candidate-img-drawer mt-25 mb-20"></div>
+              <span class="candidate-name block mb-10 text-center"
+                >John Bernad</span
+              >
+              <ul class="social-icons mb-30">
+                <li>
+                  <a
+                    class="facebook-link"
+                    href="https://facebook.com/ptprashanttripathi"
+                  >
+                    <i id="tt11" class="zmdi zmdi-facebook"></i>
+                    <div class="mdl-tooltip" data-mdl-for="tt11">facebook</div>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="twitter-link"
+                    href="https://twitter.com/PtPrashant09"
+                  >
+                    <i id="tt12" class="zmdi zmdi-twitter"></i>
+                    <div class="mdl-tooltip" data-mdl-for="tt12">twitter</div>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="linkedin-link"
+                    href="https://www.linkedin.com/in/ptprashanttripathi/"
+                  >
+                    <i id="tt13" class="zmdi zmdi-linkedin"></i>
+                    <div class="mdl-tooltip" data-mdl-for="tt13">linkedin</div>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="github-link"
+                    href="https://github.com/PtPrashantTripathi"
+                  >
+                    <i id="tt14" class="zmdi zmdi-github"></i>
+                    <div class="mdl-tooltip" data-mdl-for="tt14">github</div>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="instagram-link"
+                    href="https://www.instagram.com/ptprashanttripathi/"
+                  >
+                    <i id="tt15" class="zmdi zmdi-instagram"></i>
+                    <div class="mdl-tooltip" data-mdl-for="tt15">instagram</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="mdl-scroll-spy-2">
+              <ul class="mdl-navigation">
+                <li>
+                  <a
+                    class="mdl-navigation__link border-top-sep"
+                    data-scroll
+                    href="#body"
+                  >
+                    <i class="zmdi zmdi-border-color pr-15"></i>
+                    <span class="font-capitalize">about</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="mdl-navigation__link border-top-sep"
+                    data-scroll
+                    href="#portfolio_sec"
+                  >
+                    <i class="zmdi zmdi-case pr-15"></i>
+                    <span class="font-capitalize">portfolio</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="mdl-navigation__link border-top-sep"
+                    data-scroll
+                    href="#interest_sec"
+                  >
+                    <i class="zmdi zmdi-coffee pr-15"></i>
+                    <span class="font-capitalize">interest</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="mdl-navigation__link border-top-sep"
+                    data-scroll
+                    href="#project_sec"
+                  >
+                    <i class="zmdi zmdi-code pr-15"></i>
+                    <span class="font-capitalize">projects</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="mdl-navigation__link border-top-sep border-bottom-sep"
+                    data-scroll
+                    href="#contact_sec"
+                  >
+                    <i class="zmdi zmdi-email pr-15"></i>
+                    <span class="font-capitalize">contact</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="drawer-footer mt-50 mb-30 text-center">
+              <p class="font-12 mt-10">John Bernad &copy; 2020.</p>
+            </div>
+          </div>
+        </div>
+        <div class="main-content relative">
+          <div class="container">
+            <section class="about-sec mt-180 mt-sm-120 mb-30">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="mdl-card mdl-shadow--2dp">
+                    <div class="row">
+                      <div class="col-md-5 col-xs-12 mb-30">
+                        <img
+                          class="candidate-img mb-35"
+                          src="https://raw.githubusercontent.com/johnbernad6/cardgameNodeJSserver/main/IMG_2157.png"
+                        />
+                        <!-- <ul class="social-icons">
+                          <li>
+                            <a
+                              class="facebook-link"
+                              href="https://facebook.com/ptprashant09"
+                            >
+                              <i id="tt1" class="zmdi zmdi-facebook"></i>
+                              <div class="mdl-tooltip" data-mdl-for="tt1">
+                                facebook
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              class="twitter-link"
+                              href="https://twitter.com/PtPrashant09"
+                            >
+                              <i id="tt2" class="zmdi zmdi-twitter"></i>
+                              <div class="mdl-tooltip" data-mdl-for="tt2">
+                                twitter
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              class="linkedin-link"
+                              href="https://www.linkedin.com/in/ptprashanttripathi/"
+                            >
+                              <i id="tt3" class="zmdi zmdi-linkedin"></i>
+                              <div class="mdl-tooltip" data-mdl-for="tt3">
+                                linkedin
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              class="instagram-link"
+                              href="https://www.instagram.com/ptprashanttripathi/"
+                            >
+                              <i id="tt5" class="zmdi zmdi-instagram"></i>
+                              <div class="mdl-tooltip" data-mdl-for="tt5">
+                                instagram
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              class="github-link"
+                              href="https://github.com/PtPrashantTripathi"
+                            >
+                              <i id="tt4" class="zmdi zmdi-github"></i>
+                              <div class="mdl-tooltip" data-mdl-for="tt4">
+                                github
+                              </div>
+                            </a>
+                          </li>
+                        </ul> -->
+                      </div>
+                      <div class="col-md-7 col-xs-12">
+                        <div class="info-wrap">
+                          <h1>John Bernad</h1>
+<!--                           <h5 class="mt-20 font-grey">
+                            Developer
+                          </h5> -->
+                          <!-- <div class="mt-30">
+                            <a
+                              id="download_cv"
+                              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect bg-green font-white mr-10"
+                              href="https://drive.google.com/file/d/1J79L3laKdUfjyP44nHjJ6E50oFebs5if/view?usp=drivesdk"
+                              >download Resume</a
+                            >
+                            <a
+                              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect bg-blue font-white"
+                              href="#contact_sec"
+                              data-scroll
+                              >contact</a
+                            >
+                          </div>
+                        </div> -->
+                        <p style="margin-top: 10px;">Hey there! 👋
 I’m glad you made it.
 
 This server is where I host and manage the APIs I’ve built for my games and SaaS systems. Check out my contact info and projects below.
@@ -485,42 +314,300 @@ This server is where I host and manage the APIs I’ve built for my games and Sa
 
 
 <div class="contact-info" style="opacity: 0.6;">
-        <p><a href="tel:+17073423998">+17073423998</a></p>
-        <p><a href="mailto:johnbernad6@gmail.com">johnbernad6@gmail.com</a></p>
-        <p><a href="https://www.linkedin.com/in/johnbernad/">linkedin.com/johnbernad/</a></p>
-        <p><a href="https://github.com/johnbernad6">github.com/johnbernad6</a></p>
-<!--         <p><a href="https://raw.githubusercontent.com/johnbernad6/cardgameNodeJSserver/main/JohnBernadPDF.pdf" download>Download Resume</a></p> -->
-        <p><a href="https://apps.apple.com/us/app/pinoy-poker/id6461049438" download>Try my free game on the app store</a></p>
-        <p><a href="https://johnbernad6server-b837q.ondigitalocean.app/Menu">Check out this project I'm currently working on.</a></p>
+ <p><a href="tel:+17073423998">+17073423998</a></p>
+ <p><a href="mailto:johnbernad6@gmail.com">johnbernad6@gmail.com</a></p>
+ <p><a href="https://www.linkedin.com/in/johnbernad/">linkedin.com/johnbernad/</a></p>
+ <p><a href="https://github.com/johnbernad6">github.com/johnbernad6</a></p>
+<!--  <p><a href="https://raw.githubusercontent.com/johnbernad6/cardgameNodeJSserver/main/JohnBernadPDF.pdf" download>Download Resume</a></p> -->
+ <p><a href="https://apps.apple.com/us/app/pinoy-poker/id6461049438" download>Try my free game on the app store</a></p>
+ <p><a href="https://johnbernad6server-b837q.ondigitalocean.app/Menu">Check out this project I'm currently working on.</a></p>
 </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!--/About Sec-->
+            <section id="portfolio_sec" class="profile-sec sec-pad-top-sm">
+              <h2 class="mb-30">what i do</h2>
+              <div class="row">
+                <div class="col-md-4 col-xs-12 mb-30">
+                  <div class="mdl-card mdl-shadow--2dp text-center">
+                    <i class="zmdi zmdi-code font-blue profile-icon"></i>
+                    <h4 class="mb-15">Developer</h4>
+                    <p>
+                      I focus on building scalable, reliable systems while keeping long-term maintainability and performance in mind. I’m comfortable navigating cross-functional teams, aligning technical execution with business goals, and adapting to evolving project needs. Whether working independently or collaboratively, I strive to deliver data solutions that are not only functional but also impactful.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4 col-xs-12 mb-30">
+                  <div class="mdl-card mdl-shadow--2dp text-center">
+                    <i
+                      class="zmdi zmdi-incandescent font-yellow profile-icon"
+                    ></i>
+                    <h4 class="mb-15">Innovator</h4>
+                    <p>
+                      Driven by curiosity and a desire to challenge the status quo, I thrive on turning unconventional ideas into impactful solutions. I approach problems with a creative mindset, blending technical skills with experimentation to build what hasn’t been built before. For me, innovation isn’t just about invention — it’s about improvement, iteration, and meaningful progress.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4 col-xs-12 mb-30">
+                  <div class="mdl-card mdl-shadow--2dp text-center">
+                    <i class="zmdi zmdi-book font-black profile-icon"></i>
+                    <h4 class="mb-15">Learner</h4>
+                    <p>
+                      I am constantly learning and growing in my field. I am
+                      passionate about creating innovative solutions and using
+                      technology to solve real-world problems. I have a strong
+                      foundation in programming languages such as Javascript,
+                      Python, SQL and am always eager to expand my skillset and take
+                      on new challenges. Whether I am working on a solo project
+                      or collaborating with a team, I thrive in a fast-paced and
+                      dynamic environment.
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="interest_sec" class="interest-sec sec-pad-top-sm">
+              <h2 class="mb-30">interests</h2>
+              <div class="row">
+                <div class="col-md-2 col-sm-4 col-xs-6 mb-30">
+                  <div
+                    class="mdl-card mdl-shadow--2dp text-center pa-20 pt-30 pb-30"
+                  >
+                    <i class="zmdi zmdi-tv"></i>
+                    <span>movie</span>
+                  </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 mb-30">
+                  <div
+                    class="mdl-card mdl-shadow--2dp text-center pa-20 pt-30 pb-30"
+                  >
+                    <i class="zmdi zmdi-radio"></i>
+                    <span>music</span>
+                  </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 mb-30">
+                  <div
+                    class="mdl-card mdl-shadow--2dp text-center pa-20 pt-30 pb-30"
+                  >
+                    <i class="zmdi zmdi-smartphone"></i>
+                    <span>gaming</span>
+                  </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 mb-30">
+                  <div
+                    class="mdl-card mdl-shadow--2dp text-center pa-20 pt-30 pb-30"
+                  >
+                    <i class="zmdi zmdi-dribbble"></i>
+                    <span>sports</span>
+                  </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 mb-30">
+                  <div
+                    class="mdl-card mdl-shadow--2dp text-center pa-20 pt-30 pb-30"
+                  >
+                    <i class="zmdi zmdi-cutlery"></i>
+                    <span>food</span>
+                  </div>
+                </div>
+                <!-- <div class="col-md-2 col-sm-4 col-xs-6 mb-30">
+                  <div
+                    class="mdl-card mdl-shadow--2dp text-center pa-20 pt-30 pb-30"
+                  >
+                    <i class="zmdi zmdi-airplane"></i>
+                    <span>traveling</span>
+                  </div>
+                </div>
+              </div> -->
+            </section>
 
-</div>
-  
-
-      <div class="infotop">
-
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="icon">
-  </svg><br>    
-
-
-  
-<br>
-
-
-
-  </div>
-
-</div>
-
+            <!-- <section id="contact_sec" class="contact-sec sec-pad-top-sm">
+              <h2 class="mb-35">contact</h2>
+              <div class="row">
+                <div id="form_card_height" class="col-sm-12 mb-30">
+                  <div class="mdl-card mdl-shadow--2dp text-center">
+                    <h4 class="mb-10 font-unsetcase">Find me on.</h4>
+                    <ul class="social-icons mt-10">
+                      <li>
+                        <a
+                          class="facebook-link"
+                          href="https://facebook.com/ptprashant09"
+                        >
+                          <i
+                            id="tt6"
+                            class="zmdi zmdi-facebook"
+                            tabindex="0"
+                          ></i>
+                          <div
+                            class="mdl-tooltip"
+                            data-mdl-for="tt6"
+                            data-upgraded="MaterialTooltip"
+                            style="left: 332px; margin-left: -34px; top: 545px"
+                          >
+                            facebook
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="twitter-link"
+                          href="https://twitter.com/PtPrashant09"
+                        >
+                          <i
+                            id="tt7"
+                            class="zmdi zmdi-twitter"
+                            tabindex="0"
+                          ></i>
+                          <div
+                            class="mdl-tooltip"
+                            data-mdl-for="tt7"
+                            data-upgraded="MaterialTooltip"
+                            style="
+                              left: 270.533px;
+                              margin-left: -26.5px;
+                              top: 568px;
+                            "
+                          >
+                            twitter
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="linkedin-link"
+                          href="https://www.linkedin.com/in/ptprashanttripathi/"
+                        >
+                          <i
+                            id="tt8"
+                            class="zmdi zmdi-linkedin"
+                            tabindex="0"
+                          ></i>
+                          <div
+                            class="mdl-tooltip"
+                            data-mdl-for="tt8"
+                            data-upgraded="MaterialTooltip"
+                            style="
+                              left: 332px;
+                              margin-left: -30.5px;
+                              top: 568px;
+                            "
+                          >
+                            linkedin
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="youtube-link"
+                          href="https://www.youtube.com/channel/UCqvHCmcCjWQ57lWmfDj2ZMg"
+                        >
+                          <i
+                            id="tt10"
+                            class="zmdi zmdi-youtube-play"
+                            tabindex="0"
+                          ></i>
+                          <div
+                            class="mdl-tooltip"
+                            data-mdl-for="tt10"
+                            data-upgraded="MaterialTooltip"
+                            style="
+                              left: 454.933px;
+                              margin-left: -35px;
+                              top: 568px;
+                            "
+                          >
+                            youtube
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="reddit-link"
+                          href="https://www.reddit.com/user/PtPrashantTripathi"
+                        >
+                          <i
+                            id="tt10"
+                            class="zmdi zmdi-reddit"
+                            tabindex="0"
+                          ></i>
+                          <div
+                            class="mdl-tooltip"
+                            data-mdl-for="tt10"
+                            data-upgraded="MaterialTooltip"
+                            style="
+                              left: 454.933px;
+                              margin-left: -35px;
+                              top: 568px;
+                            "
+                          >
+                            reddit
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="instagram-link"
+                          href="https://www.instagram.com/ptprashanttripathi/"
+                        >
+                          <i
+                            id="tt10"
+                            class="zmdi zmdi-instagram"
+                            tabindex="0"
+                          ></i>
+                          <div
+                            class="mdl-tooltip"
+                            data-mdl-for="tt10"
+                            data-upgraded="MaterialTooltip"
+                            style="
+                              left: 454.933px;
+                              margin-left: -35px;
+                              top: 568px;
+                            "
+                          >
+                            instagram
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="github-link"
+                          href="https://www.github.com/ptprashanttripathi/"
+                        >
+                          <i id="tt9" class="zmdi zmdi-github" tabindex="0"></i>
+                          <div
+                            class="mdl-tooltip"
+                            data-mdl-for="tt9"
+                            data-upgraded="MaterialTooltip"
+                            style="
+                              left: 393.467px;
+                              margin-left: -30px;
+                              top: 568px;
+                            "
+                          >
+                            github
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section> -->
+            <footer
+              class="footer-sec sec-pad-top-sm sec-pad-bottom text-center"
+            >
+              <h4>thank you for visiting.</h4>
+              <p class="mt-10">
+                John Bernad © 2023 All rights reserved.
+              </p>
+            </footer>
+          </div>
+        </div>
+      </div>
     </div>
-    <section>
-        <h2></h2>
-        <p></p>
-    </section>
-<!--     <section>
-        <h2>Section 2</h2>
-        <p>This is the second section of the website.</p>
-    </section> -->
-
-</body>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="js/repo.js"></script>
+  </body>
 </html>
